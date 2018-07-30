@@ -1,0 +1,951 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PrecisionMeterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Batch">
+          <Key>
+            <PropertyRef Name="BatchNo" />
+          </Key>
+          <Property Name="BatchNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Custid" Type="int" />
+          <Property Name="BatchDate" Type="datetime" />
+          <Property Name="Totaldone" Type="int" />
+          <Property Name="printed" Type="tinyint" />
+          <Property Name="BatchStatus" Type="varchar" MaxLength="50" />
+          <Property Name="Notes" Type="ntext" />
+        </EntityType>
+        <EntityType Name="CustomerEmails">
+          <Key>
+            <PropertyRef Name="sysid" />
+          </Key>
+          <Property Name="sysid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="custid" Type="int" Nullable="false" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="CustomerNotes">
+          <Key>
+            <PropertyRef Name="sysid" />
+          </Key>
+          <Property Name="sysid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="custid" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="notedate" Type="datetime" />
+          <Property Name="author" Type="varchar" MaxLength="50" />
+          <Property Name="note" Type="ntext" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="Custid" />
+          </Key>
+          <Property Name="Custid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Company" Type="varchar" MaxLength="50" />
+          <Property Name="ShortName" Type="varchar" MaxLength="50" />
+          <Property Name="Contact" Type="varchar" MaxLength="50" />
+          <Property Name="Address1" Type="varchar" MaxLength="50" />
+          <Property Name="Address2" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="varchar" MaxLength="50" />
+          <Property Name="Zip" Type="varchar" MaxLength="50" />
+          <Property Name="Phone1" Type="varchar" MaxLength="50" />
+          <Property Name="Phone2" Type="varchar" MaxLength="50" />
+          <Property Name="Fax" Type="varchar" MaxLength="50" />
+          <Property Name="Calculation" Type="varchar" MaxLength="50" />
+          <Property Name="PrintIncolor" Type="varchar" MaxLength="50" />
+          <Property Name="Ytdmeters" Type="varchar" MaxLength="50" />
+          <Property Name="CurrentYear" Type="varchar" MaxLength="50" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="emailAddress" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="sysid" />
+          </Key>
+          <Property Name="sysid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Empss" Type="varchar" MaxLength="50" />
+          <Property Name="EmpFirstName" Type="varchar" MaxLength="50" />
+          <Property Name="SSn" Type="varchar" MaxLength="50" />
+          <Property Name="Contact" Type="varchar" MaxLength="50" />
+          <Property Name="EmergencyNo" Type="varchar" MaxLength="50" />
+          <Property Name="Pager" Type="varchar" MaxLength="50" />
+          <Property Name="EmpLastName" Type="varchar" MaxLength="50" />
+          <Property Name="Initials" Type="varchar" MaxLength="50" />
+          <Property Name="DateOfHire" Type="datetime" />
+          <Property Name="Address" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="varchar" MaxLength="50" />
+          <Property Name="Zip" Type="int" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" />
+          <Property Name="Cell" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="FieldMeters">
+          <Key>
+            <PropertyRef Name="sysid" />
+          </Key>
+          <Property Name="sysid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FieldMeterSize" Type="varchar" MaxLength="50" />
+          <Property Name="CFH" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PrecisionMeter.dbo.Query' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Query">
+          <Key>
+            <PropertyRef Name="Custid" />
+          </Key>
+          <Property Name="Custid" Type="int" Nullable="false" />
+          <Property Name="Company" Type="varchar" MaxLength="50" />
+          <Property Name="ShortName" Type="varchar" MaxLength="50" />
+          <Property Name="Contact" Type="varchar" MaxLength="50" />
+          <Property Name="Address1" Type="varchar" MaxLength="50" />
+          <Property Name="Address2" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="varchar" MaxLength="50" />
+          <Property Name="Zip" Type="int" />
+          <Property Name="Phone1" Type="varchar" MaxLength="15" />
+          <Property Name="Phone2" Type="varchar" MaxLength="15" />
+          <Property Name="Fax" Type="varchar" MaxLength="15" />
+          <Property Name="Calculation" Type="varchar" MaxLength="50" />
+          <Property Name="PrintIncolor" Type="varchar" MaxLength="50" />
+          <Property Name="Ytdmeters" Type="int" />
+          <Property Name="CurrentYear" Type="int" />
+          <Property Name="Notes" Type="ntext" />
+          <Property Name="emailAddress" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="QuoteDetail">
+          <Key>
+            <PropertyRef Name="sysid" />
+          </Key>
+          <Property Name="sysid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QDetailId" Type="int" />
+          <Property Name="Custid" Type="int" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="Qty" Type="int" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="QuoteHeader">
+          <Key>
+            <PropertyRef Name="QuotId" />
+          </Key>
+          <Property Name="QuotId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Custid" Type="int" />
+          <Property Name="QuoteDate" Type="datetime" />
+          <Property Name="Totalcost" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Notes" Type="ntext" />
+        </EntityType>
+        <EntityType Name="ReasonsForTest">
+          <Key>
+            <PropertyRef Name="sysid" />
+          </Key>
+          <Property Name="sysid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReasonForTest" Type="varchar" MaxLength="50" />
+          <Property Name="Orderby" Type="varchar" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="Repair">
+          <Key>
+            <PropertyRef Name="sysid" />
+          </Key>
+          <Property Name="sysid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Batchno" Type="int" />
+          <Property Name="Custid" Type="int" />
+          <Property Name="mfgnum" Type="int" />
+          <Property Name="conum" Type="varchar" MaxLength="50" />
+          <Property Name="conumandmfgnum" Type="varchar" MaxLength="50" />
+          <Property Name="Mfgsize" Type="varchar" MaxLength="50" />
+          <Property Name="Afpopen" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Afpcheck" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Afperro" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TextMessage1" Type="bit" />
+          <Property Name="Message1" Type="varchar" MaxLength="50" />
+          <Property Name="Alopen" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Alcheck" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Alerror" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Pdate" Type="datetime" />
+          <Property Name="Textmessage2" Type="bit" />
+          <Property Name="Message2" Type="varchar" MaxLength="50" />
+          <Property Name="Pby" Type="varchar" MaxLength="50" />
+          <Property Name="Rft" Type="varchar" MaxLength="50" />
+          <Property Name="Irat" Type="varchar" MaxLength="50" />
+          <Property Name="Irbt" Type="varchar" MaxLength="50" />
+          <Property Name="Remarks" Type="ntext" />
+          <Property Name="Statue" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RootsDetail">
+          <Key>
+            <PropertyRef Name="sysid" />
+          </Key>
+          <Property Name="sysid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rheaderId" Type="int" Nullable="false" />
+          <Property Name="RunNumber" Type="int" />
+          <Property Name="Time" Type="datetime" />
+          <Property Name="FPC" Type="int" />
+          <Property Name="FlowRanges" Type="varchar" MaxLength="50" />
+          <Property Name="IndFlowRate" Type="int" />
+          <Property Name="ProverCount" Type="int" />
+          <Property Name="RunningtimeSec" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CalFlowRate" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="UnCorproof" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PPercent" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Pon" Type="varchar" MaxLength="50" />
+          <Property Name="CorrectedProof" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Notes" Type="varchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="RootsHeader">
+          <Key>
+            <PropertyRef Name="sysid" />
+          </Key>
+          <Property Name="sysid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Company" Type="varchar" MaxLength="50" />
+          <Property Name="FMS" Type="varchar" MaxLength="50" />
+          <Property Name="CFH" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="MFG" Type="varchar" MaxLength="50" />
+          <Property Name="CoNum" Type="varchar" MaxLength="50" />
+          <Property Name="BeginRead" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="EndRead" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="RPS" Type="varchar" MaxLength="50" />
+          <Property Name="Notes" Type="ntext" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PrecisionMeter.dbo.vw_BatchCustomerLookup' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_BatchCustomerLookup">
+          <Key>
+            <PropertyRef Name="BatchNo" />
+          </Key>
+          <Property Name="BatchNo" Type="int" Nullable="false" />
+          <Property Name="Custid" Type="int" />
+          <Property Name="Company" Type="varchar" MaxLength="50" />
+          <Property Name="Totaldone" Type="int" />
+          <Property Name="printed" Type="tinyint" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'PrecisionMeter.dbo.vw_batchMeterReport' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="vw_batchMeterReport">
+          <Property Name="Batchno" Type="int" />
+          <Property Name="Custid" Type="int" />
+          <Property Name="mfgnum" Type="int" />
+          <Property Name="conum" Type="varchar" MaxLength="50" />
+          <Property Name="Mfgsize" Type="varchar" MaxLength="50" />
+          <Property Name="Afpopen" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Afpcheck" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Afperro" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Alopen" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Alcheck" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Alerror" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Pdate" Type="datetime" />
+          <Property Name="Pby" Type="varchar" MaxLength="50" />
+          <Property Name="Rft" Type="varchar" MaxLength="50" />
+          <Property Name="Irbt" Type="int" />
+          <Property Name="Remarks" Type="ntext" />
+          <Property Name="Company" Type="varchar" MaxLength="50" />
+          <Property Name="Irat" Type="int" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PrecisionMeter.dbo.vw_IndexMeters' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_IndexMeters">
+          <Key>
+            <PropertyRef Name="BatchNo" />
+            <PropertyRef Name="Custid" />
+          </Key>
+          <Property Name="BatchNo" Type="int" Nullable="false" />
+          <Property Name="Custid" Type="int" Nullable="false" />
+          <Property Name="Company" Type="varchar" MaxLength="50" />
+          <Property Name="Totaldone" Type="int" />
+          <Property Name="BatchStatus" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'PrecisionMeter.dbo.vw_totalbatches' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="vw_totalbatches">
+          <Property Name="Company" Type="varchar" MaxLength="50" />
+          <Property Name="total" Type="int" />
+          <Property Name="BatchNo" Type="int" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'PrecisionMeter.dbo.vw_totalcustomermeters' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="vw_totalcustomermeters">
+          <Property Name="Custid" Type="int" />
+          <Property Name="Company" Type="varchar" MaxLength="50" />
+          <Property Name="Batchno" Type="int" />
+        </EntityType>-->
+        <Association Name="FK_QuoteDetail_QuoteHeader">
+          <End Role="QuoteHeader" Type="Self.QuoteHeader" Multiplicity="0..1" />
+          <End Role="QuoteDetail" Type="Self.QuoteDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuoteHeader">
+              <PropertyRef Name="QuotId" />
+            </Principal>
+            <Dependent Role="QuoteDetail">
+              <PropertyRef Name="QDetailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Repair_Customers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+          <End Role="Repair" Type="Self.Repair" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Custid" />
+            </Principal>
+            <Dependent Role="Repair">
+              <PropertyRef Name="Custid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RootsDetail_RootsHeader">
+          <End Role="RootsHeader" Type="Self.RootsHeader" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RootsDetail" Type="Self.RootsDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RootsHeader">
+              <PropertyRef Name="sysid" />
+            </Principal>
+            <Dependent Role="RootsDetail">
+              <PropertyRef Name="rheaderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_GetMeterBatchTotals" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Custid" Type="int" Mode="In" />
+          <Parameter Name="Batchno" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GetMeterTotals" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Custid" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="PrecisionMeterModelStoreContainer">
+          <EntitySet Name="Batch" EntityType="Self.Batch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerEmails" EntityType="Self.CustomerEmails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerNotes" EntityType="Self.CustomerNotes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FieldMeters" EntityType="Self.FieldMeters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuoteDetail" EntityType="Self.QuoteDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuoteHeader" EntityType="Self.QuoteHeader" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReasonsForTest" EntityType="Self.ReasonsForTest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Repair" EntityType="Self.Repair" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RootsDetail" EntityType="Self.RootsDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RootsHeader" EntityType="Self.RootsHeader" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Query" EntityType="Self.Query" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Query].[Custid] AS [Custid], 
+    [Query].[Company] AS [Company], 
+    [Query].[ShortName] AS [ShortName], 
+    [Query].[Contact] AS [Contact], 
+    [Query].[Address1] AS [Address1], 
+    [Query].[Address2] AS [Address2], 
+    [Query].[City] AS [City], 
+    [Query].[State] AS [State], 
+    [Query].[Zip] AS [Zip], 
+    [Query].[Phone1] AS [Phone1], 
+    [Query].[Phone2] AS [Phone2], 
+    [Query].[Fax] AS [Fax], 
+    [Query].[Calculation] AS [Calculation], 
+    [Query].[PrintIncolor] AS [PrintIncolor], 
+    [Query].[Ytdmeters] AS [Ytdmeters], 
+    [Query].[CurrentYear] AS [CurrentYear], 
+    [Query].[Notes] AS [Notes], 
+    [Query].[emailAddress] AS [emailAddress]
+    FROM [dbo].[Query] AS [Query]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_BatchCustomerLookup" EntityType="Self.vw_BatchCustomerLookup" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_BatchCustomerLookup].[BatchNo] AS [BatchNo], 
+    [vw_BatchCustomerLookup].[Custid] AS [Custid], 
+    [vw_BatchCustomerLookup].[Company] AS [Company], 
+    [vw_BatchCustomerLookup].[Totaldone] AS [Totaldone], 
+    [vw_BatchCustomerLookup].[printed] AS [printed]
+    FROM [dbo].[vw_BatchCustomerLookup] AS [vw_BatchCustomerLookup]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_IndexMeters" EntityType="Self.vw_IndexMeters" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_IndexMeters].[BatchNo] AS [BatchNo], 
+    [vw_IndexMeters].[Custid] AS [Custid], 
+    [vw_IndexMeters].[Company] AS [Company], 
+    [vw_IndexMeters].[Totaldone] AS [Totaldone], 
+    [vw_IndexMeters].[BatchStatus] AS [BatchStatus]
+    FROM [dbo].[vw_IndexMeters] AS [vw_IndexMeters]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_QuoteDetail_QuoteHeader" Association="Self.FK_QuoteDetail_QuoteHeader">
+            <End Role="QuoteHeader" EntitySet="QuoteHeader" />
+            <End Role="QuoteDetail" EntitySet="QuoteDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Repair_Customers" Association="Self.FK_Repair_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Repair" EntitySet="Repair" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RootsDetail_RootsHeader" Association="Self.FK_RootsDetail_RootsHeader">
+            <End Role="RootsHeader" EntitySet="RootsHeader" />
+            <End Role="RootsDetail" EntitySet="RootsDetail" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PrecisionMeterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Batch">
+          <Key>
+            <PropertyRef Name="BatchNo" />
+          </Key>
+          <Property Name="BatchNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Custid" Type="Int32" />
+          <Property Name="BatchDate" Type="DateTime" Precision="3" />
+          <Property Name="Totaldone" Type="Int32" />
+          <Property Name="printed" Type="Byte" />
+          <Property Name="BatchStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="CustomerEmail">
+          <Key>
+            <PropertyRef Name="sysid" />
+          </Key>
+          <Property Name="sysid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="custid" Type="Int32" Nullable="false" />
+          <Property Name="EmailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CustomerNote">
+          <Key>
+            <PropertyRef Name="sysid" />
+          </Key>
+          <Property Name="sysid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="custid" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="notedate" Type="DateTime" Precision="3" />
+          <Property Name="author" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Custid" />
+          </Key>
+          <Property Name="Custid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Company" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShortName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Zip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Fax" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Calculation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PrintIncolor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ytdmeters" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CurrentYear" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="emailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Repairs" Relationship="Self.FK_Repair_Customers" FromRole="Customers" ToRole="Repair" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="sysid" />
+          </Key>
+          <Property Name="sysid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Empss" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmpFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SSn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmergencyNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Pager" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmpLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Initials" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfHire" Type="DateTime" Precision="3" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Zip" Type="Int32" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cell" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="FieldMeter">
+          <Key>
+            <PropertyRef Name="sysid" />
+          </Key>
+          <Property Name="sysid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FieldMeterSize" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CFH" Type="Int32" />
+        </EntityType>
+        <EntityType Name="QuoteDetail">
+          <Key>
+            <PropertyRef Name="sysid" />
+          </Key>
+          <Property Name="sysid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QDetailId" Type="Int32" />
+          <Property Name="Custid" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Qty" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Total" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="QuoteHeader" Relationship="Self.FK_QuoteDetail_QuoteHeader" FromRole="QuoteDetail" ToRole="QuoteHeader" />
+        </EntityType>
+        <EntityType Name="QuoteHeader">
+          <Key>
+            <PropertyRef Name="QuotId" />
+          </Key>
+          <Property Name="QuotId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Custid" Type="Int32" />
+          <Property Name="QuoteDate" Type="DateTime" Precision="3" />
+          <Property Name="Totalcost" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="QuoteDetails" Relationship="Self.FK_QuoteDetail_QuoteHeader" FromRole="QuoteHeader" ToRole="QuoteDetail" />
+        </EntityType>
+        <EntityType Name="ReasonsForTest">
+          <Key>
+            <PropertyRef Name="sysid" />
+          </Key>
+          <Property Name="sysid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReasonForTest" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Orderby" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Repair">
+          <Key>
+            <PropertyRef Name="sysid" />
+          </Key>
+          <Property Name="sysid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Batchno" Type="Int32" />
+          <Property Name="Custid" Type="Int32" />
+          <Property Name="mfgnum" Type="Int32" />
+          <Property Name="conum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="conumandmfgnum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mfgsize" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Afpopen" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Afpcheck" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Afperro" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TextMessage1" Type="Boolean" />
+          <Property Name="Message1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Alopen" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Alcheck" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Alerror" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Pdate" Type="DateTime" Precision="3" />
+          <Property Name="Textmessage2" Type="Boolean" />
+          <Property Name="Message2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Pby" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Rft" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Irat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Irbt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Statue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Repair_Customers" FromRole="Repair" ToRole="Customers" />
+        </EntityType>
+        <EntityType Name="RootsDetail">
+          <Key>
+            <PropertyRef Name="sysid" />
+          </Key>
+          <Property Name="sysid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rheaderId" Type="Int32" Nullable="false" />
+          <Property Name="RunNumber" Type="Int32" />
+          <Property Name="Time" Type="DateTime" Precision="3" />
+          <Property Name="FPC" Type="Int32" />
+          <Property Name="FlowRanges" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IndFlowRate" Type="Int32" />
+          <Property Name="ProverCount" Type="Int32" />
+          <Property Name="RunningtimeSec" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CalFlowRate" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="UnCorproof" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PPercent" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Pon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CorrectedProof" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Notes" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RootsHeader" Relationship="Self.FK_RootsDetail_RootsHeader" FromRole="RootsDetail" ToRole="RootsHeader" />
+        </EntityType>
+        <EntityType Name="RootsHeader">
+          <Key>
+            <PropertyRef Name="sysid" />
+          </Key>
+          <Property Name="sysid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Company" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FMS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CFH" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MFG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CoNum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BeginRead" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="EndRead" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="RPS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RootsDetails" Relationship="Self.FK_RootsDetail_RootsHeader" FromRole="RootsHeader" ToRole="RootsDetail" />
+        </EntityType>
+        <EntityType Name="Query">
+          <Key>
+            <PropertyRef Name="Custid" />
+          </Key>
+          <Property Name="Custid" Type="Int32" Nullable="false" />
+          <Property Name="Company" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ShortName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Zip" Type="Int32" />
+          <Property Name="Phone1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Phone2" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Fax" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Calculation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PrintIncolor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ytdmeters" Type="Int32" />
+          <Property Name="CurrentYear" Type="Int32" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="emailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vw_BatchCustomerLookup">
+          <Key>
+            <PropertyRef Name="BatchNo" />
+          </Key>
+          <Property Name="BatchNo" Type="Int32" Nullable="false" />
+          <Property Name="Custid" Type="Int32" />
+          <Property Name="Company" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Totaldone" Type="Int32" />
+          <Property Name="printed" Type="Byte" />
+        </EntityType>
+        <EntityType Name="vw_IndexMeters">
+          <Key>
+            <PropertyRef Name="BatchNo" />
+            <PropertyRef Name="Custid" />
+          </Key>
+          <Property Name="BatchNo" Type="Int32" Nullable="false" />
+          <Property Name="Custid" Type="Int32" Nullable="false" />
+          <Property Name="Company" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Totaldone" Type="Int32" />
+          <Property Name="BatchStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Repair_Customers">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Repair" Type="Self.Repair" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Custid" />
+            </Principal>
+            <Dependent Role="Repair">
+              <PropertyRef Name="Custid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuoteDetail_QuoteHeader">
+          <End Role="QuoteHeader" Type="Self.QuoteHeader" Multiplicity="0..1" />
+          <End Role="QuoteDetail" Type="Self.QuoteDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuoteHeader">
+              <PropertyRef Name="QuotId" />
+            </Principal>
+            <Dependent Role="QuoteDetail">
+              <PropertyRef Name="QDetailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RootsDetail_RootsHeader">
+          <End Role="RootsHeader" Type="Self.RootsHeader" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RootsDetail" Type="Self.RootsDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RootsHeader">
+              <PropertyRef Name="sysid" />
+            </Principal>
+            <Dependent Role="RootsDetail">
+              <PropertyRef Name="rheaderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PrecisionMeterEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Batches" EntityType="Self.Batch" />
+          <EntitySet Name="CustomerEmails" EntityType="Self.CustomerEmail" />
+          <EntitySet Name="CustomerNotes" EntityType="Self.CustomerNote" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="FieldMeters" EntityType="Self.FieldMeter" />
+          <EntitySet Name="QuoteDetails" EntityType="Self.QuoteDetail" />
+          <EntitySet Name="QuoteHeaders" EntityType="Self.QuoteHeader" />
+          <EntitySet Name="ReasonsForTests" EntityType="Self.ReasonsForTest" />
+          <EntitySet Name="Repairs" EntityType="Self.Repair" />
+          <EntitySet Name="RootsDetails" EntityType="Self.RootsDetail" />
+          <EntitySet Name="RootsHeaders" EntityType="Self.RootsHeader" />
+          <EntitySet Name="Queries" EntityType="Self.Query" />
+          <EntitySet Name="vw_BatchCustomerLookup" EntityType="Self.vw_BatchCustomerLookup" />
+          <EntitySet Name="vw_IndexMeters" EntityType="Self.vw_IndexMeters" />
+          <AssociationSet Name="FK_Repair_Customers" Association="Self.FK_Repair_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Repair" EntitySet="Repairs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuoteDetail_QuoteHeader" Association="Self.FK_QuoteDetail_QuoteHeader">
+            <End Role="QuoteHeader" EntitySet="QuoteHeaders" />
+            <End Role="QuoteDetail" EntitySet="QuoteDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RootsDetail_RootsHeader" Association="Self.FK_RootsDetail_RootsHeader">
+            <End Role="RootsHeader" EntitySet="RootsHeaders" />
+            <End Role="RootsDetail" EntitySet="RootsDetails" />
+          </AssociationSet>
+          <FunctionImport Name="sp_GetMeterBatchTotals" ReturnType="Collection(Int32)">
+            <Parameter Name="Custid" Mode="In" Type="Int32" />
+            <Parameter Name="Batchno" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetMeterTotals" ReturnType="Collection(Int32)">
+            <Parameter Name="Custid" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PrecisionMeterModelStoreContainer" CdmEntityContainer="PrecisionMeterEntities">
+          <EntitySetMapping Name="Batches">
+            <EntityTypeMapping TypeName="PrecisionMeterModel.Batch">
+              <MappingFragment StoreEntitySet="Batch">
+                <ScalarProperty Name="BatchNo" ColumnName="BatchNo" />
+                <ScalarProperty Name="Custid" ColumnName="Custid" />
+                <ScalarProperty Name="BatchDate" ColumnName="BatchDate" />
+                <ScalarProperty Name="Totaldone" ColumnName="Totaldone" />
+                <ScalarProperty Name="printed" ColumnName="printed" />
+                <ScalarProperty Name="BatchStatus" ColumnName="BatchStatus" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerEmails">
+            <EntityTypeMapping TypeName="PrecisionMeterModel.CustomerEmail">
+              <MappingFragment StoreEntitySet="CustomerEmails">
+                <ScalarProperty Name="sysid" ColumnName="sysid" />
+                <ScalarProperty Name="custid" ColumnName="custid" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerNotes">
+            <EntityTypeMapping TypeName="PrecisionMeterModel.CustomerNote">
+              <MappingFragment StoreEntitySet="CustomerNotes">
+                <ScalarProperty Name="sysid" ColumnName="sysid" />
+                <ScalarProperty Name="custid" ColumnName="custid" />
+                <ScalarProperty Name="notedate" ColumnName="notedate" />
+                <ScalarProperty Name="author" ColumnName="author" />
+                <ScalarProperty Name="note" ColumnName="note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="PrecisionMeterModel.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="Custid" ColumnName="Custid" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Phone1" ColumnName="Phone1" />
+                <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Calculation" ColumnName="Calculation" />
+                <ScalarProperty Name="PrintIncolor" ColumnName="PrintIncolor" />
+                <ScalarProperty Name="Ytdmeters" ColumnName="Ytdmeters" />
+                <ScalarProperty Name="CurrentYear" ColumnName="CurrentYear" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="emailAddress" ColumnName="emailAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="PrecisionMeterModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="sysid" ColumnName="sysid" />
+                <ScalarProperty Name="Empss" ColumnName="Empss" />
+                <ScalarProperty Name="EmpFirstName" ColumnName="EmpFirstName" />
+                <ScalarProperty Name="SSn" ColumnName="SSn" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="EmergencyNo" ColumnName="EmergencyNo" />
+                <ScalarProperty Name="Pager" ColumnName="Pager" />
+                <ScalarProperty Name="EmpLastName" ColumnName="EmpLastName" />
+                <ScalarProperty Name="Initials" ColumnName="Initials" />
+                <ScalarProperty Name="DateOfHire" ColumnName="DateOfHire" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Cell" ColumnName="Cell" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FieldMeters">
+            <EntityTypeMapping TypeName="PrecisionMeterModel.FieldMeter">
+              <MappingFragment StoreEntitySet="FieldMeters">
+                <ScalarProperty Name="sysid" ColumnName="sysid" />
+                <ScalarProperty Name="FieldMeterSize" ColumnName="FieldMeterSize" />
+                <ScalarProperty Name="CFH" ColumnName="CFH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuoteDetails">
+            <EntityTypeMapping TypeName="PrecisionMeterModel.QuoteDetail">
+              <MappingFragment StoreEntitySet="QuoteDetail">
+                <ScalarProperty Name="sysid" ColumnName="sysid" />
+                <ScalarProperty Name="QDetailId" ColumnName="QDetailId" />
+                <ScalarProperty Name="Custid" ColumnName="Custid" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuoteHeaders">
+            <EntityTypeMapping TypeName="PrecisionMeterModel.QuoteHeader">
+              <MappingFragment StoreEntitySet="QuoteHeader">
+                <ScalarProperty Name="QuotId" ColumnName="QuotId" />
+                <ScalarProperty Name="Custid" ColumnName="Custid" />
+                <ScalarProperty Name="QuoteDate" ColumnName="QuoteDate" />
+                <ScalarProperty Name="Totalcost" ColumnName="Totalcost" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReasonsForTests">
+            <EntityTypeMapping TypeName="PrecisionMeterModel.ReasonsForTest">
+              <MappingFragment StoreEntitySet="ReasonsForTest">
+                <ScalarProperty Name="sysid" ColumnName="sysid" />
+                <ScalarProperty Name="ReasonForTest" ColumnName="ReasonForTest" />
+                <ScalarProperty Name="Orderby" ColumnName="Orderby" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Repairs">
+            <EntityTypeMapping TypeName="PrecisionMeterModel.Repair">
+              <MappingFragment StoreEntitySet="Repair">
+                <ScalarProperty Name="sysid" ColumnName="sysid" />
+                <ScalarProperty Name="Batchno" ColumnName="Batchno" />
+                <ScalarProperty Name="Custid" ColumnName="Custid" />
+                <ScalarProperty Name="mfgnum" ColumnName="mfgnum" />
+                <ScalarProperty Name="conum" ColumnName="conum" />
+                <ScalarProperty Name="conumandmfgnum" ColumnName="conumandmfgnum" />
+                <ScalarProperty Name="Mfgsize" ColumnName="Mfgsize" />
+                <ScalarProperty Name="Afpopen" ColumnName="Afpopen" />
+                <ScalarProperty Name="Afpcheck" ColumnName="Afpcheck" />
+                <ScalarProperty Name="Afperro" ColumnName="Afperro" />
+                <ScalarProperty Name="TextMessage1" ColumnName="TextMessage1" />
+                <ScalarProperty Name="Message1" ColumnName="Message1" />
+                <ScalarProperty Name="Alopen" ColumnName="Alopen" />
+                <ScalarProperty Name="Alcheck" ColumnName="Alcheck" />
+                <ScalarProperty Name="Alerror" ColumnName="Alerror" />
+                <ScalarProperty Name="Pdate" ColumnName="Pdate" />
+                <ScalarProperty Name="Textmessage2" ColumnName="Textmessage2" />
+                <ScalarProperty Name="Message2" ColumnName="Message2" />
+                <ScalarProperty Name="Pby" ColumnName="Pby" />
+                <ScalarProperty Name="Rft" ColumnName="Rft" />
+                <ScalarProperty Name="Irat" ColumnName="Irat" />
+                <ScalarProperty Name="Irbt" ColumnName="Irbt" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Statue" ColumnName="Statue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RootsDetails">
+            <EntityTypeMapping TypeName="PrecisionMeterModel.RootsDetail">
+              <MappingFragment StoreEntitySet="RootsDetail">
+                <ScalarProperty Name="sysid" ColumnName="sysid" />
+                <ScalarProperty Name="rheaderId" ColumnName="rheaderId" />
+                <ScalarProperty Name="RunNumber" ColumnName="RunNumber" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="FPC" ColumnName="FPC" />
+                <ScalarProperty Name="FlowRanges" ColumnName="FlowRanges" />
+                <ScalarProperty Name="IndFlowRate" ColumnName="IndFlowRate" />
+                <ScalarProperty Name="ProverCount" ColumnName="ProverCount" />
+                <ScalarProperty Name="RunningtimeSec" ColumnName="RunningtimeSec" />
+                <ScalarProperty Name="CalFlowRate" ColumnName="CalFlowRate" />
+                <ScalarProperty Name="UnCorproof" ColumnName="UnCorproof" />
+                <ScalarProperty Name="PPercent" ColumnName="PPercent" />
+                <ScalarProperty Name="Pon" ColumnName="Pon" />
+                <ScalarProperty Name="CorrectedProof" ColumnName="CorrectedProof" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RootsHeaders">
+            <EntityTypeMapping TypeName="PrecisionMeterModel.RootsHeader">
+              <MappingFragment StoreEntitySet="RootsHeader">
+                <ScalarProperty Name="sysid" ColumnName="sysid" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="FMS" ColumnName="FMS" />
+                <ScalarProperty Name="CFH" ColumnName="CFH" />
+                <ScalarProperty Name="MFG" ColumnName="MFG" />
+                <ScalarProperty Name="CoNum" ColumnName="CoNum" />
+                <ScalarProperty Name="BeginRead" ColumnName="BeginRead" />
+                <ScalarProperty Name="EndRead" ColumnName="EndRead" />
+                <ScalarProperty Name="RPS" ColumnName="RPS" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Queries">
+            <EntityTypeMapping TypeName="PrecisionMeterModel.Query">
+              <MappingFragment StoreEntitySet="Query">
+                <ScalarProperty Name="Custid" ColumnName="Custid" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Phone1" ColumnName="Phone1" />
+                <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Calculation" ColumnName="Calculation" />
+                <ScalarProperty Name="PrintIncolor" ColumnName="PrintIncolor" />
+                <ScalarProperty Name="Ytdmeters" ColumnName="Ytdmeters" />
+                <ScalarProperty Name="CurrentYear" ColumnName="CurrentYear" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="emailAddress" ColumnName="emailAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_BatchCustomerLookup">
+            <EntityTypeMapping TypeName="PrecisionMeterModel.vw_BatchCustomerLookup">
+              <MappingFragment StoreEntitySet="vw_BatchCustomerLookup">
+                <ScalarProperty Name="BatchNo" ColumnName="BatchNo" />
+                <ScalarProperty Name="Custid" ColumnName="Custid" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Totaldone" ColumnName="Totaldone" />
+                <ScalarProperty Name="printed" ColumnName="printed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_IndexMeters">
+            <EntityTypeMapping TypeName="PrecisionMeterModel.vw_IndexMeters">
+              <MappingFragment StoreEntitySet="vw_IndexMeters">
+                <ScalarProperty Name="BatchNo" ColumnName="BatchNo" />
+                <ScalarProperty Name="Custid" ColumnName="Custid" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Totaldone" ColumnName="Totaldone" />
+                <ScalarProperty Name="BatchStatus" ColumnName="BatchStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetMeterBatchTotals" FunctionName="PrecisionMeterModel.Store.sp_GetMeterBatchTotals" />
+          <FunctionImportMapping FunctionImportName="sp_GetMeterTotals" FunctionName="PrecisionMeterModel.Store.sp_GetMeterTotals" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

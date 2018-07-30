@@ -1,0 +1,67 @@
+﻿@model Meter.Models.Batch
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Batch</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Custid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Custid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BatchDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BatchDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Totaldone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Totaldone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.printed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.printed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BatchStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BatchStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BatchNo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

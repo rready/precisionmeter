@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c9f80d89c62f40e793b8e5e64ebfa0b5" Name="Diagram1">
+        <EntityTypeShape EntityType="PrecisionMeterModel.Batch" Width="1.5" PointX="5.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrecisionMeterModel.CustomerEmail" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrecisionMeterModel.CustomerNote" Width="1.5" PointX="9.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrecisionMeterModel.Customer" Width="1.5" PointX="5.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrecisionMeterModel.Employee" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrecisionMeterModel.FieldMeter" Width="1.5" PointX="7.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrecisionMeterModel.QuoteDetail" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrecisionMeterModel.QuoteHeader" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrecisionMeterModel.ReasonsForTest" Width="1.5" PointX="9.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrecisionMeterModel.Repair" Width="1.5" PointX="8" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrecisionMeterModel.RootsDetail" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrecisionMeterModel.RootsHeader" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrecisionMeterModel.Query" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrecisionMeterModel.vw_BatchCustomerLookup" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PrecisionMeterModel.vw_IndexMeters" Width="1.5" PointX="4.75" PointY="11.75" IsExpanded="true" />
+        <AssociationConnector Association="PrecisionMeterModel.FK_Repair_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="PrecisionMeterModel.FK_QuoteDetail_QuoteHeader" ManuallyRouted="false" />
+        <AssociationConnector Association="PrecisionMeterModel.FK_RootsDetail_RootsHeader" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

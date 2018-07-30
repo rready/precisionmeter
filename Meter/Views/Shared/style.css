@@ -1,0 +1,134 @@
+﻿/*@charset "utf-8";*/
+
+/*
+Design by www.maak-mijn-website.nl
+http://www.maak-mijn-website.nl
+Released for free under a Creative Commons Attribution 2.5 License
+*/
+
+#main {
+	background-color: #A5C7E0;
+}
+body {
+	background-color: #A5C7E0;
+}
+a {
+    color: #5182bf;
+    text-decoration: none;
+    
+}
+
+a:hover{
+	color: #5182bf;
+	text-decoration:underline;
+}
+#logo {
+	background-image: url(../../Images/index_03.jpg);
+	height: 53px;
+	width: 141px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 20px;
+	line-height: 2;
+	text-align: center;
+	color: #4586B9;
+}
+#logo a {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 20px;
+	line-height: 2;
+	text-align: center;
+	text-decoration:none;
+}
+.top_menu {
+	font-family: "Lucida Handwriting";
+	font-size: 18px;
+	font-weight: normal;
+	color: #353535;
+}
+.top_menu ul {
+	margin: 0;
+	list-style: none;
+	padding-left: 0px;
+}
+
+.top_menu li {
+	display: inline;
+}
+
+.top_menu a {
+	font-family: "Lucida Handwriting";
+	font-size: 18px;
+	font-weight:normal;
+	color: #353535;
+	text-decoration: none;
+	line-height:35px;
+	float: left;
+	height: 36px;
+	width: 99px;
+	padding-bottom:0px;
+	text-align: center;
+	padding-left: 0px;
+	background: url(../../images/index_07.jpg);
+	background-repeat: no-repeat;
+}
+.top_menu a:hover {	
+	background: url(images/hover.jpg);
+	background-repeat: no-repeat; 
+	height: 36px;
+	width: 99px;
+	text-decoration: none;
+}
+.h1{
+	font-family:"Lucida Handwriting";
+	font-size:18px;
+	color: #353535;
+	line-height: 2;
+	text-align: left;
+	padding-left: 10px;
+}
+.h2{
+	font-family:"Lucida Handwriting";
+	font-size:18px;
+	color: #353535;
+	line-height: 2;
+	text-align: center;
+}
+.content{
+	font-family: "myriad web Pro";
+	font-size:12px;
+	color: #353535;
+	text-align: left;
+	padding-left: 10px;
+}
+#content {
+	background-image: url(../../Images/index_19.jpg);
+	height: 376px;
+	width: 410px;
+}
+
+#left_content {
+	background-image: url(../../Images/index_18.jpg);
+	height: 262px;
+	width: 181px;
+}#footer {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #D9D9D9;
+	text-decoration: none;
+	background-image: url(../../Images/index_31.jpg);
+	height: 23px;
+	width: 591px;
+	text-align: center;
+}
+.style4 {color: #457598}
+.style5 {
+	font-size: 10px;
+	color: #A5C7E5;
+}
+.style5 a {
+	font-size: 10px;
+	text-decoration: none;
+	color: #A5C7E5;
+}

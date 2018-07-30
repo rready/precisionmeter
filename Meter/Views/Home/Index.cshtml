@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Precision Meter Application</h1>
+    <p class="lead">This application will allow users to record meter metrics from testing equipment. </p>
+
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Customers</h2>
+        <p>
+            Use this to see your Customers info.
+        </p>
+        <p><div class="btn btn-default">@Html.ActionLink("Customer", "Index", "Customers")</div></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Meter Batches</h2>
+        <p>Use this to go directly to your meter tester application.</p>
+        <p><div class="btn btn-default">@Html.ActionLink("Meter Batches", "Index", "Batches")</div></p>
+
+    </div>
+    <div class="col-md-4">
+        <h2>Reports</h2>
+        <p>Use this to select Reports</p>
+        <p><div class="btn btn-default">@Html.ActionLink("Meters", "Index", "Repairs")</div></p>
+    </div>
+</div>
