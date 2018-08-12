@@ -17,43 +17,48 @@ namespace Meter.Controllers
         // GET: Repairs
         public ActionResult Index()
         {
-            var repairs = db.Repairs.Include(r => r.Customer);
+            var repairs = db.Repairs.Include(r => r.Customer).ToList();
             return View(repairs.ToList());
         }
 
 
         public ActionResult GetMeterList()
         {
-            var x = (from obj in db.Repairs select new
-            {
-                sysid = obj.sysid,
-                Batchno = obj.Batchno,
-                Custid = obj.Custid,
-                mfgnum = obj.mfgnum,
-                conum = obj.conum,
-                conumandmfgnum = obj.conumandmfgnum,
-                Mfgsize = obj.Mfgsize,
-                Afpopen = obj.Afpopen,
-                Afpcheck = obj.Afpcheck,
-                Afperro = obj.Afperro,
-                TextMessage1 = obj.TextMessage1,
-                Message1 = obj.Message1,
-                Alopen = obj.Alopen,
-                Alcheck = obj.Alcheck,
-                Alerror = obj.Alerror,
-                Pdate = obj.Pdate,
-                Textmessage2 = obj.Textmessage2,
-                Message2 = obj.Message2,
-                Pby = obj.Pby,
-                Rft = obj.Rft,
-                Irat = obj.Irat,
-                Irbt = obj.Irbt,
-                Remarks = obj.Remarks,
-                Statue = obj.Statue
+            var x = db.Repairs
+                .Join(db.Customers,
+                      c => c.Custid,
+                      o => o.Custid,
+                      (c, o) => new
+                      {
+                         Company = o.Company,
+                          sysid = c.sysid,
+                          Batchno = c.Batchno,
+                          Custid = c.Custid,
+                          mfgnum = c.mfgnum,
+                          conum = c.conum,
+                          conumandmfgnum = c.conumandmfgnum,
+                          Mfgsize = c.Mfgsize,
+                          Afpopen = c.Afpopen,
+                          Afpcheck = c.Afpcheck,
+                          Afperro = c.Afperro,
+                          TextMessage1 = c.TextMessage1,
+                          Message1 = c.Message1,
+                          Alopen = c.Alopen,
+                          Alcheck = c.Alcheck,
+                          Alerror = c.Alerror,
+                          Pdate = c.Pdate,
+                          Textmessage2 = c.Textmessage2,
+                          Message2 = c.Message2,
+                          Pby = c.Pby,
+                          Rft = c.Rft,
+                          Irat = c.Irat,
+                          Irbt = c.Irbt,
+                          Remarks = c.Remarks,
+                          Statue = c.Statue
 
+                      }).ToList();
 
-
-            }).ToList();
+          
             return Json(x.ToList(), JsonRequestBehavior.AllowGet);
         }
         // GET: Repairs/Details/5
@@ -75,6 +80,7 @@ namespace Meter.Controllers
         public ActionResult Create()
         {
             ViewBag.Custid = new SelectList(db.Customers, "Custid", "Company");
+            ViewBag.AFM = db.MeterOptions.ToList().Where(x => x.Type == "AFM");
             return View();
         }
 

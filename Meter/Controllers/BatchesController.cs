@@ -21,6 +21,47 @@ namespace Meter.Controllers
             return View(db.Batches.ToList());
         }
 
+        public ActionResult GetBatchMeters(int batchno)
+        {
+            var x = db.Repairs.Where(r => r.Batchno == batchno)
+                .Join(db.Customers,
+                      c => c.Custid,
+                      o => o.Custid,
+                      (c, o) => new
+                      {
+                          Company = o.Company,
+                          sysid = c.sysid,
+                          Batchno = c.Batchno,
+                          Custid = c.Custid,
+                          mfgnum = c.mfgnum,
+                          conum = c.conum,
+                          conumandmfgnum = c.conumandmfgnum,
+                          Mfgsize = c.Mfgsize,
+                          Afpopen = c.Afpopen,
+                          Afpcheck = c.Afpcheck,
+                          Afperro = c.Afperro,
+                          TextMessage1 = c.TextMessage1,
+                          Message1 = c.Message1,
+                          Alopen = c.Alopen,
+                          Alcheck = c.Alcheck,
+                          Alerror = c.Alerror,
+                          Pdate = c.Pdate,
+                          Textmessage2 = c.Textmessage2,
+                          Message2 = c.Message2,
+                          Pby = c.Pby,
+                          Rft = c.Rft,
+                          Irat = c.Irat,
+                          Irbt = c.Irbt,
+                          Remarks = c.Remarks,
+                          Statue = c.Statue
+
+                      }).ToList();
+
+
+            return Json(x.ToList(), JsonRequestBehavior.AllowGet);
+        }
+
+
 
         public ActionResult GetBatchList()
         {

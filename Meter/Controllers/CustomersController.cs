@@ -18,16 +18,20 @@ namespace Meter.Controllers
        
         public ActionResult Index()
         {
-            return View(db.Customers.ToList());
+           // var repairs = db.Repairs.Include(r => r.Customer).ToList();
+            //return View(db.Customers.ToList());
+            return View(db.Customers.Include(d => d.Repairs).ToList());
         }
 
        
         
         public ActionResult GetEmpList()
         {
-            //var records = View(db.Customers.ToList<Customer>());
-            var x = (from obj in db.Customers select new { Custid = obj.Custid, Company = obj.Company, ShortName = obj.ShortName, Contact = obj.Contact }).ToList();
-            return Json(x.ToList(),JsonRequestBehavior.AllowGet);
+           // var records = View(db.Customers);
+            var records = (from obj in db.Customers select new { Custid = obj.Custid, Company = obj.Company,
+                ShortName = obj.ShortName, Contact = obj.Contact, Address1 = obj.Address1,
+                Address2 = obj.Address2, City = obj.City }).ToList();
+            return Json(records,JsonRequestBehavior.AllowGet);
         }
         // GET: Customers/Details/5
         public ActionResult Details(int? id)

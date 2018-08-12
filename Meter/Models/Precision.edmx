@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PrecisionMeterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="PrecisionMeterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Batch">
           <Key>
             <PropertyRef Name="BatchNo" />
@@ -86,6 +86,14 @@
           <Property Name="sysid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FieldMeterSize" Type="varchar" MaxLength="50" />
           <Property Name="CFH" Type="int" />
+        </EntityType>
+        <EntityType Name="MeterOptions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Type" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'PrecisionMeter.dbo.Query' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -219,28 +227,6 @@ warning 6002: The table/view 'PrecisionMeter.dbo.vw_BatchCustomerLookup' does no
           <Property Name="printed" Type="tinyint" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6013: The table/view 'PrecisionMeter.dbo.vw_batchMeterReport' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="vw_batchMeterReport">
-          <Property Name="Batchno" Type="int" />
-          <Property Name="Custid" Type="int" />
-          <Property Name="mfgnum" Type="int" />
-          <Property Name="conum" Type="varchar" MaxLength="50" />
-          <Property Name="Mfgsize" Type="varchar" MaxLength="50" />
-          <Property Name="Afpopen" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Afpcheck" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Afperro" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Alopen" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Alcheck" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Alerror" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Pdate" Type="datetime" />
-          <Property Name="Pby" Type="varchar" MaxLength="50" />
-          <Property Name="Rft" Type="varchar" MaxLength="50" />
-          <Property Name="Irbt" Type="int" />
-          <Property Name="Remarks" Type="ntext" />
-          <Property Name="Company" Type="varchar" MaxLength="50" />
-          <Property Name="Irat" Type="int" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
 warning 6002: The table/view 'PrecisionMeter.dbo.vw_IndexMeters' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vw_IndexMeters">
           <Key>
@@ -253,20 +239,6 @@ warning 6002: The table/view 'PrecisionMeter.dbo.vw_IndexMeters' does not have a
           <Property Name="Totaldone" Type="int" />
           <Property Name="BatchStatus" Type="varchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'PrecisionMeter.dbo.vw_totalbatches' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="vw_totalbatches">
-          <Property Name="Company" Type="varchar" MaxLength="50" />
-          <Property Name="total" Type="int" />
-          <Property Name="BatchNo" Type="int" />
-        </EntityType>-->
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'PrecisionMeter.dbo.vw_totalcustomermeters' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="vw_totalcustomermeters">
-          <Property Name="Custid" Type="int" />
-          <Property Name="Company" Type="varchar" MaxLength="50" />
-          <Property Name="Batchno" Type="int" />
-        </EntityType>-->
         <Association Name="FK_QuoteDetail_QuoteHeader">
           <End Role="QuoteHeader" Type="Self.QuoteHeader" Multiplicity="0..1" />
           <End Role="QuoteDetail" Type="Self.QuoteDetail" Multiplicity="*" />
@@ -319,6 +291,7 @@ warning 6013: The table/view 'PrecisionMeter.dbo.vw_totalcustomermeters' does no
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FieldMeters" EntityType="Self.FieldMeters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MeterOptions" EntityType="Self.MeterOptions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuoteDetail" EntityType="Self.QuoteDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuoteHeader" EntityType="Self.QuoteHeader" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReasonsForTest" EntityType="Self.ReasonsForTest" Schema="dbo" store:Type="Tables" />
@@ -378,8 +351,7 @@ warning 6013: The table/view 'PrecisionMeter.dbo.vw_totalcustomermeters' does no
             <End Role="RootsDetail" EntitySet="RootsDetail" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PrecisionMeterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -680,9 +652,18 @@ warning 6013: The table/view 'PrecisionMeter.dbo.vw_totalcustomermeters' does no
             <Parameter Name="Batchno" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_GetMeterTotals" ReturnType="Collection(Int32)">
-            <Parameter Name="Custid" Mode="In" Type="Int32" />
+          <Parameter Name="Custid" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="MeterOptions" EntityType="PrecisionMeterModel.MeterOption" />
         </EntityContainer>
+        <EntityType Name="MeterOption">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -925,6 +906,15 @@ warning 6013: The table/view 'PrecisionMeter.dbo.vw_totalcustomermeters' does no
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="sp_GetMeterBatchTotals" FunctionName="PrecisionMeterModel.Store.sp_GetMeterBatchTotals" />
           <FunctionImportMapping FunctionImportName="sp_GetMeterTotals" FunctionName="PrecisionMeterModel.Store.sp_GetMeterTotals" />
+          <EntitySetMapping Name="MeterOptions">
+            <EntityTypeMapping TypeName="PrecisionMeterModel.MeterOption">
+              <MappingFragment StoreEntitySet="MeterOptions">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

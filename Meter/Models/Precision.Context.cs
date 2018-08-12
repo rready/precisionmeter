@@ -42,6 +42,7 @@ namespace Meter.Models
         public virtual DbSet<Query> Queries { get; set; }
         public virtual DbSet<vw_BatchCustomerLookup> vw_BatchCustomerLookup { get; set; }
         public virtual DbSet<vw_IndexMeters> vw_IndexMeters { get; set; }
+        public virtual DbSet<MeterOption> MeterOptions { get; set; }
     
         public virtual ObjectResult<Nullable<int>> sp_GetMeterBatchTotals(Nullable<int> custid, Nullable<int> batchno)
         {
