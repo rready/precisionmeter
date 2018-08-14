@@ -7,7 +7,7 @@ var meterTable = $("#meterGrid").DataTable({
     "orderMulti": false, // for disable multiple column at once  
     "responsive": true,
     "deferRender": true,
-    "order": [[2, "asc"]],
+    "order": [[1, "desc"]],
     "ajax": {
         "url": "/Repairs/GetMeterList",
         "type": "POST",
@@ -32,20 +32,20 @@ var meterTable = $("#meterGrid").DataTable({
     "columns": [
         { "data": "sysid", "name": "sysid", "autoWidth": true },
         { "data": "Batchno", "name": "Batchno", "autoWidth": true },
-        { "data": "Company", "name": "Company", "autoWidth": true },
+        { "data": "Company", "title":"Company","name": "Company", "autoWidth": true },
         //{ "data": "mfgnum", "title": "mfgnum", "name": "mfgnum", "autoWidth": true },
         //{ "data": "conum", "title": "conum", "name": "conum", "autoWidth": true },
         //{ "data": "conumandmfgnum", "title": "conumandmfgnum", "name": "conumandmfgnum", "autoWidth": true },
-        { "data": "Mfgsize", "title": "MFG Size", "name": "Mfgsize", "autoWidth": true },
-        { "data": "Afpopen", "title": "AFP Open", "name": "Afpopen", "autoWidth": true },
-        { "data": "Afpcheck", "title": "AFP Check", "name": "Afpcheck", "autoWidth": true },
-        { "data": "Afperro", "title": "AFP Error", "name": "Afperro", "autoWidth": true },
+        { "data": "Mfgsize", "title": "MFG<br>Size", "name": "Mfgsize", "autoWidth": true },
+        { "data": "Afpopen", "title": "As Found<br>(Open)", "name": "Afpopen", "autoWidth": true },
+        { "data": "Afpcheck", "title": "As Found<br>(Check)", "name": "Afpcheck", "autoWidth": true },
+        { "data": "Afperro", "title": "As Found<br>(Error)", "name": "Afperro", "autoWidth": true },
         //{ "data": "TextMessage1", "title": "TextMessage", "name": "TextMessage", "autoWidth": true },
         //{ "data": "Message1", "title": "Message", "name": "Message1", "autoWidth": true },
         //{ "data": "Alopen", "title": "AL Open", "name": "Alopen", "autoWidth": true },
         //{ "data": "Alcheck", "title": "AL Check", "name": "Alcheck", "autoWidth": true },
         //{ "data": "Alerror", "title": "AL Error", "name": "Alerror", "autoWidth": true },
-        { "data": "Pdate", "title": "Pdate", "name": "Pdate", "autoWidth": true },
+        { "data": "Pdate", "title": "Proved<br>Date", "name": "Pdate", "autoWidth": true },
         //{ "data": "Textmessage2", "title": "TextMessage2", "name": "Textmessage2", "autoWidth": true },
         //{ "data": "Message2", "title": "Message2", "name": "Message2", "autoWidth": true },
         //{ "data": "Pby", "title": "Pby", "name": "Pby", "autoWidth": true },
@@ -53,7 +53,7 @@ var meterTable = $("#meterGrid").DataTable({
         //{ "data": "Irat", "title": "Irat", "name": "Irat", "autoWidth": true },
         //{ "data": "Irbt", "title": "Irbt", "name": "Irbt", "autoWidth": true },
         //{ "data": "Remarks", "title": "Remarks", "name": "Remarks", "autoWidth": true },
-        //{ "data": "Statue", "title": "Statue", "name": "Statue", "autoWidth": true },
+        //{ "data": "Statue", "title": "Status", "name": "Statue", "autoWidth": true },
 
         {
             "render": function (data, type, full, meta) { return '<a class="btn btn-info" href="/Repairs/Edit/' + full.sysid + '">Edit</a>'; }

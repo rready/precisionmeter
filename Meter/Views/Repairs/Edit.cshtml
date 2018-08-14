@@ -25,7 +25,7 @@
                 @Html.EditorFor(model => model.Batchno, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Batchno, "", new { @class = "text-danger" })
             </div>
-            @Html.LabelFor(model => model.Custid, "Custid", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Custid, "Company", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-3">
                 @Html.DropDownList("Custid", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Custid, "", new { @class = "text-danger" })
@@ -33,12 +33,12 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.mfgnum, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.mfgnum, "MFG#", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-3">
                 @Html.EditorFor(model => model.mfgnum, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.mfgnum, "", new { @class = "text-danger" })
             </div>
-            @Html.LabelFor(model => model.conum, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.conum, "CO#", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-3">
                 @Html.EditorFor(model => model.conum, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.conum, "", new { @class = "text-danger" })
@@ -51,7 +51,7 @@
                 @Html.EditorFor(model => model.conumandmfgnum, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.conumandmfgnum, "", new { @class = "text-danger" })
             </div>
-            @Html.LabelFor(model => model.Mfgsize, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Mfgsize, "MFG Size", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-3">
                 @Html.EditorFor(model => model.Mfgsize, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Mfgsize, "", new { @class = "text-danger" })
@@ -59,12 +59,12 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Afpopen, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Afpopen, "As Found Open",  htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-3">
                 @Html.EditorFor(model => model.Afpopen, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Afpopen, "", new { @class = "text-danger" })
             </div>
-            @Html.LabelFor(model => model.Afpcheck, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Afpcheck, "As Found Check", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-3">
                 @Html.EditorFor(model => model.Afpcheck, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Afpcheck, "", new { @class = "text-danger" })
@@ -72,7 +72,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Afperro, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Afperro, "As Found Error", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-3">
                 @Html.EditorFor(model => model.Afperro, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Afperro, "", new { @class = "text-danger" })
@@ -92,7 +92,7 @@
                 @Html.EditorFor(model => model.Message1, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Message1, "", new { @class = "text-danger" })
             </div>
-            @Html.LabelFor(model => model.Alopen, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Alopen, "As Left Open", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-3">
                 @Html.EditorFor(model => model.Alopen, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Alopen, "", new { @class = "text-danger" })
@@ -100,20 +100,20 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Alcheck, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Alcheck, "As Left Check", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-3">
                 @Html.EditorFor(model => model.Alcheck, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Alcheck, "", new { @class = "text-danger" })
             </div>
-            @Html.LabelFor(model => model.Alerror, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Alerror, "As Left Error", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-3">
                 @Html.EditorFor(model => model.Alerror, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Alerror, "", new { @class = "text-danger" })
-            </div>
+            </div> 
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Pdate, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Pdate, "Proved Date", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-3">
                 @Html.EditorFor(model => model.Pdate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Pdate, "", new { @class = "text-danger" })
@@ -168,7 +168,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Statue, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Statue, "Status",  htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-3">
                 @Html.EditorFor(model => model.Statue, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Statue, "", new { @class = "text-danger" })

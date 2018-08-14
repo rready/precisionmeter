@@ -1,4 +1,4 @@
-﻿$("#GetMeters").on('click', function () {
+﻿$(document).ready(function () {
 
     var batchid = $("#BatchNo").val();
 
