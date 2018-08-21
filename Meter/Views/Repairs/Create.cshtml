@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
+   // Model.Batchno = Convert.ToInt16(ViewBag.BatchNo);
+    var batchno = Convert.ToInt32(ViewBag.BatchNo);
 }
 
 <h2>Create</h2>
@@ -20,7 +22,7 @@
         @Html.LabelFor(model => model.Batchno, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-1">
             @Html.EditorFor(model => model.Batchno, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Batchno, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(model => model.Batchno, "", new { @class = "text-danger", @Value = ViewBag.BatchNo })
         </div>
         @Html.LabelFor(model => model.Custid, "Custid", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-3">

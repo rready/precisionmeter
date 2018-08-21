@@ -209,6 +209,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RepairsController.cs" />
+    <Compile Include="Controllers\vw_batchMeterReportController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -273,6 +274,9 @@
       <DependentUpon>Precision.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vw_BatchCustomerLookup.cs">
+      <DependentUpon>Precision.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_batchMeterReport.cs">
       <DependentUpon>Precision.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vw_IndexMeters.cs">
@@ -651,6 +655,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\Meter.js" />
+    <Content Include="Scripts\meterReport.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\moment-with-locales.js" />
     <Content Include="Scripts\moment-with-locales.min.js" />
@@ -710,6 +715,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\vw_batchMeterReport\Create.cshtml" />
+    <Content Include="Views\vw_batchMeterReport\Delete.cshtml" />
+    <Content Include="Views\vw_batchMeterReport\Details.cshtml" />
+    <Content Include="Views\vw_batchMeterReport\Edit.cshtml" />
+    <Content Include="Views\vw_batchMeterReport\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Start\App_Data\" />

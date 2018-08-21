@@ -2,7 +2,7 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
+<div class="jumbotron" style="background-color:#26477c; color:white; border-color:black; border-width:2px; margin-top:2px;">
     <h1>Precision Meter Application</h1>
     <p class="lead">This application will allow users to record meter metrics from testing equipment. </p>
 
@@ -24,7 +24,7 @@
     </div>
     <div class="col-md-4">
         <h2>Reports</h2>
-        <p>Use this to select Reports</p>
-        <p><div class="btn btn-default">@Html.ActionLink("Meters", "Index", "Repairs")</div></p>
+        <p>Use this for Meter Reports</p>
+        <p><div class="btn btn-default">@Html.ActionLink("Meter Report", "Index", "vw_batchMeterReport")</div></p>
     </div>
 </div>

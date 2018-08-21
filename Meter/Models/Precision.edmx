@@ -227,6 +227,32 @@ warning 6002: The table/view 'PrecisionMeter.dbo.vw_BatchCustomerLookup' does no
           <Property Name="printed" Type="tinyint" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'PrecisionMeter.dbo.vw_batchMeterReport' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_batchMeterReport">
+          <Key>
+            <PropertyRef Name="sysid" />
+          </Key>
+          <Property Name="Batchno" Type="int" />
+          <Property Name="Custid" Type="int" />
+          <Property Name="mfgnum" Type="int" />
+          <Property Name="conum" Type="varchar" MaxLength="50" />
+          <Property Name="Mfgsize" Type="varchar" MaxLength="50" />
+          <Property Name="Afpopen" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Afpcheck" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Afperro" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Alopen" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Alcheck" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Alerror" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Pdate" Type="datetime" />
+          <Property Name="Pby" Type="varchar" MaxLength="50" />
+          <Property Name="Rft" Type="varchar" MaxLength="50" />
+          <Property Name="Irbt" Type="varchar" MaxLength="50" />
+          <Property Name="Remarks" Type="ntext" />
+          <Property Name="Company" Type="varchar" MaxLength="50" />
+          <Property Name="Irat" Type="varchar" MaxLength="50" />
+          <Property Name="sysid" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'PrecisionMeter.dbo.vw_IndexMeters' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vw_IndexMeters">
           <Key>
@@ -328,6 +354,29 @@ warning 6002: The table/view 'PrecisionMeter.dbo.vw_IndexMeters' does not have a
     [vw_BatchCustomerLookup].[Totaldone] AS [Totaldone], 
     [vw_BatchCustomerLookup].[printed] AS [printed]
     FROM [dbo].[vw_BatchCustomerLookup] AS [vw_BatchCustomerLookup]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_batchMeterReport" EntityType="Self.vw_batchMeterReport" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_batchMeterReport].[Batchno] AS [Batchno], 
+    [vw_batchMeterReport].[Custid] AS [Custid], 
+    [vw_batchMeterReport].[mfgnum] AS [mfgnum], 
+    [vw_batchMeterReport].[conum] AS [conum], 
+    [vw_batchMeterReport].[Mfgsize] AS [Mfgsize], 
+    [vw_batchMeterReport].[Afpopen] AS [Afpopen], 
+    [vw_batchMeterReport].[Afpcheck] AS [Afpcheck], 
+    [vw_batchMeterReport].[Afperro] AS [Afperro], 
+    [vw_batchMeterReport].[Alopen] AS [Alopen], 
+    [vw_batchMeterReport].[Alcheck] AS [Alcheck], 
+    [vw_batchMeterReport].[Alerror] AS [Alerror], 
+    [vw_batchMeterReport].[Pdate] AS [Pdate], 
+    [vw_batchMeterReport].[Pby] AS [Pby], 
+    [vw_batchMeterReport].[Rft] AS [Rft], 
+    [vw_batchMeterReport].[Irbt] AS [Irbt], 
+    [vw_batchMeterReport].[Remarks] AS [Remarks], 
+    [vw_batchMeterReport].[Company] AS [Company], 
+    [vw_batchMeterReport].[Irat] AS [Irat], 
+    [vw_batchMeterReport].[sysid] AS [sysid]
+    FROM [dbo].[vw_batchMeterReport] AS [vw_batchMeterReport]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vw_IndexMeters" EntityType="Self.vw_IndexMeters" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -655,6 +704,7 @@ warning 6002: The table/view 'PrecisionMeter.dbo.vw_IndexMeters' does not have a
           <Parameter Name="Custid" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="MeterOptions" EntityType="PrecisionMeterModel.MeterOption" />
+          <EntitySet Name="vw_batchMeterReport" EntityType="PrecisionMeterModel.vw_batchMeterReport" />
         </EntityContainer>
         <EntityType Name="MeterOption">
           <Key>
@@ -663,6 +713,30 @@ warning 6002: The table/view 'PrecisionMeter.dbo.vw_IndexMeters' does not have a
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vw_batchMeterReport">
+          <Key>
+            <PropertyRef Name="sysid" />
+          </Key>
+          <Property Name="Batchno" Type="Int32" />
+          <Property Name="Custid" Type="Int32" />
+          <Property Name="mfgnum" Type="Int32" />
+          <Property Name="conum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mfgsize" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Afpopen" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Afpcheck" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Afperro" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Alopen" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Alcheck" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Alerror" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Pdate" Type="DateTime" Precision="3" />
+          <Property Name="Pby" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Rft" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Irbt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Company" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Irat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sysid" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -912,6 +986,31 @@ warning 6002: The table/view 'PrecisionMeter.dbo.vw_IndexMeters' does not have a
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_batchMeterReport">
+            <EntityTypeMapping TypeName="PrecisionMeterModel.vw_batchMeterReport">
+              <MappingFragment StoreEntitySet="vw_batchMeterReport">
+                <ScalarProperty Name="sysid" ColumnName="sysid" />
+                <ScalarProperty Name="Irat" ColumnName="Irat" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Irbt" ColumnName="Irbt" />
+                <ScalarProperty Name="Rft" ColumnName="Rft" />
+                <ScalarProperty Name="Pby" ColumnName="Pby" />
+                <ScalarProperty Name="Pdate" ColumnName="Pdate" />
+                <ScalarProperty Name="Alerror" ColumnName="Alerror" />
+                <ScalarProperty Name="Alcheck" ColumnName="Alcheck" />
+                <ScalarProperty Name="Alopen" ColumnName="Alopen" />
+                <ScalarProperty Name="Afperro" ColumnName="Afperro" />
+                <ScalarProperty Name="Afpcheck" ColumnName="Afpcheck" />
+                <ScalarProperty Name="Afpopen" ColumnName="Afpopen" />
+                <ScalarProperty Name="Mfgsize" ColumnName="Mfgsize" />
+                <ScalarProperty Name="conum" ColumnName="conum" />
+                <ScalarProperty Name="mfgnum" ColumnName="mfgnum" />
+                <ScalarProperty Name="Custid" ColumnName="Custid" />
+                <ScalarProperty Name="Batchno" ColumnName="Batchno" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

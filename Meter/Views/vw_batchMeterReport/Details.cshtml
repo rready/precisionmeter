@@ -1,0 +1,163 @@
+﻿@model Meter.Models.vw_batchMeterReport
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>vw_batchMeterReport</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Batchno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Batchno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Custid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Custid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mfgnum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mfgnum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.conum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.conum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mfgsize)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mfgsize)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Afpopen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Afpopen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Afpcheck)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Afpcheck)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Afperro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Afperro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Alopen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Alopen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Alcheck)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Alcheck)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Alerror)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Alerror)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pby)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pby)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rft)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rft)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Irbt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Irbt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Remarks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Company)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Irat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Irat)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.sysid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

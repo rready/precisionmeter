@@ -10,154 +10,147 @@ using Meter.Models;
 
 namespace Meter.Controllers
 {
-    public class RepairsController : Controller
+    public class vw_batchMeterReportController : Controller
     {
         private PrecisionMeterEntities db = new PrecisionMeterEntities();
 
-        // GET: Repairs
+        // GET: vw_batchMeterReport
         public ActionResult Index()
         {
-            var repairs = db.Repairs.Include(r => r.Customer).ToList();
-            return View(repairs.ToList());
+            return View(db.vw_batchMeterReport.ToList());
         }
-
 
         public ActionResult GetMeterList()
         {
-            var x = db.Repairs
+            var x = db.vw_batchMeterReport
                 .Join(db.Customers,
                       c => c.Custid,
                       o => o.Custid,
                       (c, o) => new
                       {
-                         Company = o.Company,
+                          Company = o.Company,
                           sysid = c.sysid,
                           Batchno = c.Batchno,
                           Custid = c.Custid,
                           mfgnum = c.mfgnum,
                           conum = c.conum,
-                          conumandmfgnum = c.conumandmfgnum,
+                          conumandmfgnum = c.conum,
                           Mfgsize = c.Mfgsize,
                           Afpopen = c.Afpopen,
                           Afpcheck = c.Afpcheck,
                           Afperro = c.Afperro,
-                          TextMessage1 = c.TextMessage1,
-                          Message1 = c.Message1,
+                          //TextMessage1 = c.TextMessage1,
+                        //  Message1 = c.Message1,
                           Alopen = c.Alopen,
                           Alcheck = c.Alcheck,
                           Alerror = c.Alerror,
                           Pdate = c.Pdate,
-                          Textmessage2 = c.Textmessage2,
-                          Message2 = c.Message2,
+                        //  Textmessage2 = c.Textmessage2,
+                        //  Message2 = c.Message2,
                           Pby = c.Pby,
                           Rft = c.Rft,
                           Irat = c.Irat,
                           Irbt = c.Irbt,
                           Remarks = c.Remarks,
-                          Statue = c.Statue
+                        //  Statue =   c.Statue
 
                       }).ToList();
 
-          
+
             return Json(x.ToList(), JsonRequestBehavior.AllowGet);
         }
-        // GET: Repairs/Details/5
+
+        // GET: vw_batchMeterReport/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Repair repair = db.Repairs.Find(id);
-            if (repair == null)
+            vw_batchMeterReport vw_batchMeterReport = db.vw_batchMeterReport.Find(id);
+            if (vw_batchMeterReport == null)
             {
                 return HttpNotFound();
             }
-            return View(repair);
+            return View(vw_batchMeterReport);
         }
 
-        // GET: Repairs/Create
-        public ActionResult Create(string id)
+        // GET: vw_batchMeterReport/Create
+        public ActionResult Create()
         {
-            ViewBag.Custid = new SelectList(db.Customers, "Custid", "Company");
-            ViewBag.BatchNo = id;
-            ViewBag.AFM = db.MeterOptions.ToList().Where(x => x.Type == "AFM");
             return View();
         }
 
-        // POST: Repairs/Create
+        // POST: vw_batchMeterReport/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "sysid,Batchno,Custid,mfgnum,conum,conumandmfgnum,Mfgsize,Afpopen,Afpcheck,Afperro,TextMessage1,Message1,Alopen,Alcheck,Alerror,Pdate,Textmessage2,Message2,Pby,Rft,Irat,Irbt,Remarks,Statue")] Repair repair)
+        public ActionResult Create([Bind(Include = "Batchno,Custid,mfgnum,conum,Mfgsize,Afpopen,Afpcheck,Afperro,Alopen,Alcheck,Alerror,Pdate,Pby,Rft,Irbt,Remarks,Company,Irat,sysid")] vw_batchMeterReport vw_batchMeterReport)
         {
             if (ModelState.IsValid)
             {
-                db.Repairs.Add(repair);
+                db.vw_batchMeterReport.Add(vw_batchMeterReport);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Custid = new SelectList(db.Customers, "Custid", "Company", repair.Custid);
-            return View(repair);
+            return View(vw_batchMeterReport);
         }
 
-        // GET: Repairs/Edit/5
+        // GET: vw_batchMeterReport/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Repair repair = db.Repairs.Find(id);
-            if (repair == null)
+            vw_batchMeterReport vw_batchMeterReport = db.vw_batchMeterReport.Find(id);
+            if (vw_batchMeterReport == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Custid = new SelectList(db.Customers, "Custid", "Company", repair.Custid);
-            return View(repair);
+            return View(vw_batchMeterReport);
         }
 
-        // POST: Repairs/Edit/5
+        // POST: vw_batchMeterReport/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "sysid,Batchno,Custid,mfgnum,conum,conumandmfgnum,Mfgsize,Afpopen,Afpcheck,Afperro,TextMessage1,Message1,Alopen,Alcheck,Alerror,Pdate,Textmessage2,Message2,Pby,Rft,Irat,Irbt,Remarks,Statue")] Repair repair)
+        public ActionResult Edit([Bind(Include = "Batchno,Custid,mfgnum,conum,Mfgsize,Afpopen,Afpcheck,Afperro,Alopen,Alcheck,Alerror,Pdate,Pby,Rft,Irbt,Remarks,Company,Irat,sysid")] vw_batchMeterReport vw_batchMeterReport)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(repair).State = EntityState.Modified;
+                db.Entry(vw_batchMeterReport).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Custid = new SelectList(db.Customers, "Custid", "Company", repair.Custid);
-            return View(repair);
+            return View(vw_batchMeterReport);
         }
 
-        // GET: Repairs/Delete/5
+        // GET: vw_batchMeterReport/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Repair repair = db.Repairs.Find(id);
-            if (repair == null)
+            vw_batchMeterReport vw_batchMeterReport = db.vw_batchMeterReport.Find(id);
+            if (vw_batchMeterReport == null)
             {
                 return HttpNotFound();
             }
-            return View(repair);
+            return View(vw_batchMeterReport);
         }
 
-        // POST: Repairs/Delete/5
+        // POST: vw_batchMeterReport/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Repair repair = db.Repairs.Find(id);
-            db.Repairs.Remove(repair);
+            vw_batchMeterReport vw_batchMeterReport = db.vw_batchMeterReport.Find(id);
+            db.vw_batchMeterReport.Remove(vw_batchMeterReport);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

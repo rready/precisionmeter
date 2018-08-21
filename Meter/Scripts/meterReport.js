@@ -1,6 +1,6 @@
-﻿var selectedBatch;
+﻿var selectedMeterBatch;
 
-var meterTable = $("#meterGrid").DataTable({
+var meterReportTable = $("#meterReportGrid").DataTable({
     "processing": true, // for show progress bar  
     //"serverSide": true, // for process server side  
     "filter": true, // this is for disable filter (search box)  
@@ -9,13 +9,13 @@ var meterTable = $("#meterGrid").DataTable({
     "deferRender": true,
     "order": [[1, "desc"]],
     "ajax": {
-        "url": "/Repairs/GetMeterList",
+        "url": "/vw_batchMeterReport/GetMeterList",
         "type": "POST",
         "datatype": "json",
         "dataSrc": ''
     },
     "columnDefs":
-         [{
+        [{
             "targets": [0],
             "visible": false,
             "searchable": false,
@@ -32,7 +32,7 @@ var meterTable = $("#meterGrid").DataTable({
     "columns": [
         { "data": "sysid", "name": "sysid", "autoWidth": true },
         { "data": "Batchno", "name": "Batchno", "autoWidth": true },
-        { "data": "Company", "title":"Company","name": "Company", "autoWidth": true },
+        { "data": "Company", "title": "Company", "name": "Company", "autoWidth": true },
         //{ "data": "mfgnum", "title": "mfgnum", "name": "mfgnum", "autoWidth": true },
         //{ "data": "conum", "title": "conum", "name": "conum", "autoWidth": true },
         //{ "data": "conumandmfgnum", "title": "conumandmfgnum", "name": "conumandmfgnum", "autoWidth": true },
@@ -45,7 +45,7 @@ var meterTable = $("#meterGrid").DataTable({
         //{ "data": "Alopen", "title": "AL Open", "name": "Alopen", "autoWidth": true },
         //{ "data": "Alcheck", "title": "AL Check", "name": "Alcheck", "autoWidth": true },
         //{ "data": "Alerror", "title": "AL Error", "name": "Alerror", "autoWidth": true },
-        { "data": "Pdate", "title": "Proved<br>Date", "name": "Pdate", "autoWidth": true },
+        { "data": "Pdate", "title": "Proved<br>Date", "name": "Pdate", "autoWidth": true }
         //{ "data": "Textmessage2", "title": "TextMessage2", "name": "Textmessage2", "autoWidth": true },
         //{ "data": "Message2", "title": "Message2", "name": "Message2", "autoWidth": true },
         //{ "data": "Pby", "title": "Pby", "name": "Pby", "autoWidth": true },
@@ -55,13 +55,17 @@ var meterTable = $("#meterGrid").DataTable({
         //{ "data": "Remarks", "title": "Remarks", "name": "Remarks", "autoWidth": true },
         //{ "data": "Statue", "title": "Status", "name": "Statue", "autoWidth": true },
 
-        {
-            "render": function (data, type, full, meta) { return '<a class="btn btn-info" href="/Repairs/Edit/' + full.sysid + '">Edit</a>'; }
-        },
-        {
-            "render": function (data, type, full, meta) { return '<a class="btn btn-info" href="/Repairs/Delete/' + full.sysid + '">Delete</a>'; }
-        }
+        //{
+        //    "render": function (data, type, full, meta) { return '<a class="btn btn-info" href="/Repairs/Edit/' + full.sysid + '">Edit</a>'; }
+        //},
+        //{
+        //    "render": function (data, type, full, meta) { return '<a class="btn btn-info" href="/Repairs/Delete/' + full.sysid + '">Delete</a>'; }
+        //}
 
+    ],
+    dom: 'Bfrtip',
+    buttons: [
+        'copy', 'csv', 'excel', 'pdf'
     ],
     'rowCallback': function (row, data, index) {
         if (data.Afperro < 0) {
@@ -73,18 +77,18 @@ var meterTable = $("#meterGrid").DataTable({
         //    $(row).find('td:eq(2)').css('color', 'blue');
         //}
     }
-});  
+});
 
-$('#meterGrid tbody').on('click', 'tr', function () {
+$('#meterReportGrid tbody').on('click', 'tr', function () {
     if ($(this).hasClass('selected')) {
-         $(this).removeClass('selected');
+        $(this).removeClass('selected');
     }
     else {
-        meterTable.$('tr.selected').removeClass('selected');
+        meterReportTable.$('tr.selected').removeClass('selected');
         $(this).addClass('selected');
-        var idx = meterTable.cell('.selected', 0).index();
-        var data = meterTable.row(idx.row).data();
-        selectedBatch = data.Batchno;
+        var idx = meterReportTable.cell('.selected', 0).index();
+        var data = meterReportTable.row(idx.row).data();
+        selectedMeterBatch = data.Batchno;
         //Session("Batchno") = data.Batchno;
         //HttpContext.Current.Session["CurrentUser"] = data.Batchno;
     }
@@ -138,39 +142,39 @@ $("#Afpcheck").blur(function () {
     $("#Afperro").val(FinalNumber);
 });
 
-$('#meterGrid tbody').on('click', 'input[type="checkbox"]', function(e) {
-        var $row = $(this).closest('tr');
+$('#meterGrid tbody').on('click', 'input[type="checkbox"]', function (e) {
+    var $row = $(this).closest('tr');
 
-        var data = table.row($row).data();
-        var key = data[1];
+    var data = table.row($row).data();
+    var key = data[1];
 
-        if(this.checked){
-            $row.addClass('selected');
-            rows_selected[key] = data;
-        } else {
-            $row.removeClass('selected');
-            delete rows_selected[key];
-        }
-       // selectedBatch = data.Batchno;
-        e.stopPropagation();
+    if (this.checked) {
+        $row.addClass('selected');
+        rows_selected[key] = data;
+    } else {
+        $row.removeClass('selected');
+        delete rows_selected[key];
+    }
+    // selectedBatch = data.Batchno;
+    e.stopPropagation();
 });
 
 
-$("#createmeter").on('click', function () {
-    $.ajax({
-        type: "GET",
-        contentType: "application/json;charset=utf-8",
-        url: "/Repairs/Create",
-        //data: JSON.stringify(selectedBatch),
-        data: { id: selectedBatch},
-        dataType: "json",
-        success: function (data) {
-            window.open("/Repairs/Create");
-        },
-        error: function (xhr) {
-            alert(xhr);
-        }
-    });
+//$("#createmeter").on('click', function () {
+//    $.ajax({
+//        type: "GET",
+//        contentType: "application/json;charset=utf-8",
+//        url: "/Repairs/Create",
+//        //data: JSON.stringify(selectedBatch),
+//        data: { id: selectedMeterBatch },
+//        dataType: "json",
+//        success: function (data) {
+//            window.open("/Repairs/Create");
+//        },
+//        error: function (xhr) {
+//            alert(xhr);
+//        }
+//    });
 
 
     //$.ajax({
@@ -189,7 +193,7 @@ $("#createmeter").on('click', function () {
     //    }
     //});
     //alert("clicked " + selectedBatch);
-});
+//});
 
 
 
