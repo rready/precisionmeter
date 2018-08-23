@@ -1,5 +1,5 @@
 ﻿var selectedMeterBatch;
-
+//var name;
 var meterReportTable = $("#meterReportGrid").DataTable({
     "processing": true, // for show progress bar  
     //"serverSide": true, // for process server side  
@@ -66,7 +66,33 @@ var meterReportTable = $("#meterReportGrid").DataTable({
     ],
     dom: 'Bfrtip',
     buttons: [
-        'copy', 'csv', 'excel', 'pdf'
+        {
+            extend: 'pdf',
+            orientation: 'landscape',
+            pageSize: 'LEGAL',
+            filename: function () {
+                var date = new Date();
+                var name = meterReportTable.buttons.exportData();
+                name = name.body[0][0];
+                return "PDF " + name + "_" + date;
+            }
+        },
+        {
+            extend: 'excel',
+            orientation: 'landscape',
+            pageSize: 'LEGAL',
+            filename: function () {
+                var date = new Date();
+                var name = meterReportTable.buttons.exportData();
+                name = name.body[0][0];
+                return "XLS " + name + "_" + date;
+            }
+        },
+        {
+            extend: 'print',
+            orientation: 'landscape',
+            pageSize:'LEGAL'
+        }
     ],
     'rowCallback': function (row, data, index) {
         if (data.Afperro < 0) {
@@ -158,6 +184,20 @@ $('#meterGrid tbody').on('click', 'input[type="checkbox"]', function (e) {
     }
     // selectedBatch = data.Batchno;
     e.stopPropagation();
+});
+
+//$("#selectedFile").on('click', function () {
+ 
+//});
+
+$(document).on('click', '#selectedFile', function () {
+    $.ajax({
+        "url": "/vw_batchMeterReport/GetExportedFiles",
+        "type": "POST",
+        "success": function (data) {
+            
+        }
+    })
 });
 
 

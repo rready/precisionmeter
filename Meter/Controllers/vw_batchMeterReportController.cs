@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -17,11 +18,46 @@ namespace Meter.Controllers
         // GET: vw_batchMeterReport
         public ActionResult Index()
         {
+            SelectList sl = GetExportedFiles();
+            ViewBag.Files = sl;
             return View(db.vw_batchMeterReport.ToList());
+        }
+
+        public SelectList GetExportedFiles()
+        {
+            var path = @"C:\Users\sams club\Downloads\";
+            DirectoryInfo directory = new DirectoryInfo(@"C:\Users\sams club\Downloads/");
+            //var filesListing = Directory
+            //        .EnumerateFiles(path) //<--- .NET 4.5
+            //        .Where(file => file.ToLower().EndsWith("aspx") || file.ToLower().EndsWith("ascx"))
+            //        .ToList();
+
+
+
+            var filesListing = directory.GetFiles("*.pdf").ToList<FileInfo>();
+            var filesXlxListing = directory.GetFiles("*.xls").ToList<FileInfo>();
+            List<SelectListItem> thefiles = new List<SelectListItem>();
+            List<SelectListItem> xlsFiles = new List<SelectListItem>();
+            foreach (var item in filesListing)
+            {
+                thefiles.Add(new SelectListItem() {Text = item.FullName, Value=item.FullName });
+            }
+            foreach (var item in filesXlxListing)
+            {
+                xlsFiles.Add( new SelectListItem() { Text = item.FullName, Value = item.FullName });
+            }
+           // return new SelectList(thefiles.Concat(xlsFiles), "Value", "Text");
+
+
+            SelectList sl = new SelectList(thefiles.Concat(xlsFiles), "Value", "Text");
+            ViewBag.Files = sl;
+            return sl;
         }
 
         public ActionResult GetMeterList()
         {
+            SelectList sl = GetExportedFiles();
+            ViewBag.Files = sl;
             var x = db.vw_batchMeterReport
                 .Join(db.Customers,
                       c => c.Custid,
