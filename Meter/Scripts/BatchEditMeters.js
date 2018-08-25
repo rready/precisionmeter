@@ -7,6 +7,9 @@
         //"serverSide": true, // for process server side
         "filter": true, // this is for disable filter (search box)
         "orderMulti": false, // for disable multiple column at once
+        //"scrollY": "530px",
+        //"scrollX": true,
+        //"scrollCollapse": true,
         "responsive": true,
         "deferRender": true,
         "order": [[2, "asc"]],
@@ -65,6 +68,7 @@
             }
 
         ],
+        "dom": '<"topcustom"lfr>t<"bottomcustom"ip>',
         'rowCallback': function (row, data, index) {
             if (data.Afperro < 0) {
                 $(row).find('td:eq(5)').css('color', 'red');

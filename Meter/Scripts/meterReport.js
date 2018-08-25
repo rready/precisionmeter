@@ -17,21 +17,36 @@ var meterReportTable = $("#meterReportGrid").DataTable({
     "columnDefs":
         [{
             "targets": [0],
+            "visible": true,
+            "searchable": true,
+            "select": true
+        },
+        {
+            "targets": [12],
             "visible": false,
-            "searchable": false,
-            "select": true,
+            "searchable": false
+        },
+        {
+            "targets": [13],
+            "visible": false,
+            "searchable": false
+        },
+        {
+             "targets": [14],
+             "visible": false,
+             "searchable": false
         },
         {
             "render": function (data, type, row) {
                 var rowvalue = row["Pdate"];
                 return (moment(rowvalue).format("MM/DD/YYYY"));
             },
-            "targets": 7
+            "targets": 10
 
         }],
     "columns": [
         //{ "data": "sysid", "title": "Sysid","name": "sysid", "autoWidth": true },
-        //{ "data": "Batchno", "title":"BatchNo", "name": "Batchno", "autoWidth": true },
+        { "data": "Batchno", "title":"BatchNo", "name": "Batchno", "autoWidth": true },
         { "data": "Company", "title": "CO#", "name": "Company", "autoWidth": true },
         { "data": "mfgnum", "title": "MFG", "name": "mfgnum", "autoWidth": true },
         //{ "data": "conum", "title": "conum", "name": "conum", "autoWidth": true },
@@ -72,9 +87,11 @@ var meterReportTable = $("#meterReportGrid").DataTable({
             pageSize: 'LEGAL',
             filename: function () {
                 var date = new Date();
+                var d = myFunction(date);
                 var name = meterReportTable.buttons.exportData();
-                name = name.body[0][0];
-                return "PDF " + name + "_" + date;
+                var batch = name.body[0][0];
+                var co = name.body[0][1];
+                return batch + "_" + co + "_" + d;
             }
         },
         {
@@ -83,9 +100,11 @@ var meterReportTable = $("#meterReportGrid").DataTable({
             pageSize: 'LEGAL',
             filename: function () {
                 var date = new Date();
+                var d = myFunction(date);
                 var name = meterReportTable.buttons.exportData();
-                name = name.body[0][0];
-                return "XLS " + name + "_" + date;
+                var batch = name.body[0][0];
+                var co = name.body[0][1];
+                return batch + "_" + co + "_" + d;
             }
         },
         {
@@ -195,10 +214,29 @@ $(document).on('click', '#selectedFile', function () {
         "url": "/vw_batchMeterReport/GetExportedFiles",
         "type": "POST",
         "success": function (data) {
-            
+
         }
-    })
+    });
 });
+
+function myFunction(date) {
+    var today = date;
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+
+    if (mm < 10) {;
+        mm = '0' + mm;
+    }
+
+    today = mm + '/' + dd + '/' + yyyy;
+    return today;
+   
+}
 
 
 //$("#createmeter").on('click', function () {

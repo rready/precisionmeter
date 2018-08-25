@@ -2,29 +2,42 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron" style="background-color:#26477c; color:white; border-color:black; border-width:2px; margin-top:2px;">
-    <h1>Precision Meter Application</h1>
-    <p class="lead">This application will allow users to record meter metrics from testing equipment. </p>
-
+<div class="jumbotron" style="background-color:#26477c; color:lightgray; box-shadow: 5px 10px #888888; color:white; border-color:black; border-width:2px; margin-top:2px;">
+    <div style="text-align:center; margin-top:-30px;"> 
+        <h1>PMR</h1>
+        @*<img style="float:left;" src="~/Images/GasMeterImage.jpg" />*@
+    </div>
+    <hr width="100%" height="10px;" style="border-color:black;border-width:thick;">
+    <div style="text-align:center; color:lightgray;">
+        <b>PRECISION METER REPAIR, INC.</b>
+    </div>
+    <hr width="100%" height="10px;" style="border-color:black; border-width:thick;">
+    <div style="text-align:center; color:lightgray; font-size:10px;">
+            <div>4410 Airport Road</div>
+            <div>Plant City, Florida 33563</div>
+    </div>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
+<div class="row" style="text-align:center;">
+    <div class="col-md-4" style="">
         <h2>Customers</h2>
         <p>
             Use this to see your Customers info.
         </p>
         <p><div class="btn btn-default">@Html.ActionLink("Customer", "Index", "Customers")</div></p>
+        @*<img src="~/Images/GasMeterImage.jpg" />*@
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4" style="">
         <h2>Meter Batches</h2>
         <p>Use this to go directly to your meter tester application.</p>
         <p><div class="btn btn-default">@Html.ActionLink("Meter Batches", "Index", "Batches")</div></p>
+        @*<img src="~/Images/GasMeterImage.jpg" />*@
 
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4" style="">
         <h2>Reports</h2>
         <p>Use this for Meter Reports</p>
         <p><div class="btn btn-default">@Html.ActionLink("Meter Report", "Index", "vw_batchMeterReport")</div></p>
+        @*<img src="~/Images/GasMeterImage.jpg" />*@
     </div>
 </div>

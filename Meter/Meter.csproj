@@ -336,6 +336,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\flikr-icon.png" />
+    <Content Include="Images\gasmeter.jpg" />
+    <Content Include="Images\GasMeterImage.jpg" />
     <Content Include="Images\hover.jpg" />
     <Content Include="Images\icons8-add-50.png" />
     <Content Include="Images\icons8-delete-25.png" />
@@ -736,6 +738,7 @@
     <Content Include="Views\Batches\Details.cshtml" />
     <Content Include="Views\Batches\Edit.cshtml" />
     <Content Include="Views\Batches\Index.cshtml" />
+    <Content Include="Views\Home\GasMeterImage.jpg" />
     <Content Include="Views\Repairs\Create.cshtml" />
     <Content Include="Views\Repairs\Delete.cshtml" />
     <Content Include="Views\Repairs\Details.cshtml" />

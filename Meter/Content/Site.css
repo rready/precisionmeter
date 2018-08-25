@@ -16,6 +16,27 @@
     white-space: normal;
 }
 
+.custom {
+    font-size: 12px;
+    font-family: Arial;
+    font-weight:300;
+    line-height:normal;
+}
+
+.footerlocation {
+    position: fixed;
+    bottom: 0;
+}
+
+
+.bottomcustom, .topcustom {
+    line-height:normal;
+    font-size: 12px;
+    font-weight:300;
+    font-family: Arial;
+    width: 100%;
+}
+
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
