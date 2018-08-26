@@ -31,7 +31,7 @@
                     var rowvalue = row["Pdate"];
                     return (moment(rowvalue).format("MM/DD/YYYY"));
                 },
-                "targets": 7
+                "targets": 9
 
             }],
         "columns": [
@@ -47,9 +47,9 @@
             { "data": "Afperro", "title": "AFP Error", "name": "Afperro", "autoWidth": true },
             //{ "data": "TextMessage1", "title": "TextMessage", "name": "TextMessage", "autoWidth": true },
             //{ "data": "Message1", "title": "Message", "name": "Message1", "autoWidth": true },
-            //{ "data": "Alopen", "title": "AL Open", "name": "Alopen", "autoWidth": true },
-            //{ "data": "Alcheck", "title": "AL Check", "name": "Alcheck", "autoWidth": true },
-            //{ "data": "Alerror", "title": "AL Error", "name": "Alerror", "autoWidth": true },
+            { "data": "Alopen", "title": "AL Open", "name": "Alopen", "autoWidth": true },
+            { "data": "Alcheck", "title": "AL Check", "name": "Alcheck", "autoWidth": true },
+            { "data": "Alerror", "title": "AL Error", "name": "Alerror", "autoWidth": true },
             { "data": "Pdate", "title": "Pdate", "name": "Pdate", "autoWidth": true },
             //{ "data": "Textmessage2", "title": "TextMessage2", "name": "Textmessage2", "autoWidth": true },
             //{ "data": "Message2", "title": "Message2", "name": "Message2", "autoWidth": true },

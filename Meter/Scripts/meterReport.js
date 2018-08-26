@@ -2,7 +2,7 @@
 //var name;
 var meterReportTable = $("#meterReportGrid").DataTable({
     "processing": true, // for show progress bar  
-    //"serverSide": true, // for process server side  
+    "serverSide": true, // for process server side  
     "filter": true, // this is for disable filter (search box)  
     "orderMulti": false, // for disable multiple column at once  
     "responsive": true,
@@ -46,15 +46,15 @@ var meterReportTable = $("#meterReportGrid").DataTable({
         }],
     "columns": [
         //{ "data": "sysid", "title": "Sysid","name": "sysid", "autoWidth": true },
-        { "data": "Batchno", "title":"BatchNo", "name": "Batchno", "autoWidth": true },
+        { "data": "Batchno", "title":"Batch No", "name": "Batchno", "autoWidth": true },
         { "data": "Company", "title": "CO#", "name": "Company", "autoWidth": true },
         { "data": "mfgnum", "title": "MFG", "name": "mfgnum", "autoWidth": true },
         //{ "data": "conum", "title": "conum", "name": "conum", "autoWidth": true },
         //{ "data": "conumandmfgnum", "title": "conumandmfgnum", "name": "conumandmfgnum", "autoWidth": true },
         { "data": "Mfgsize", "title": "Size", "name": "Mfgsize", "autoWidth": true },
-        { "data": "Afpopen", "title": "(Open)", "name": "Afpopen", "autoWidth": true },
-        { "data": "Afpcheck", "title": "(Check)", "name": "Afpcheck", "autoWidth": true },
-        { "data": "Afperro", "title": "(Error)", "name": "Afperro", "autoWidth": true },
+        { "data": "Afpopen", "title": "Open", "name": "Afpopen", "autoWidth": true },
+        { "data": "Afpcheck", "title": "Check", "name": "Afpcheck", "autoWidth": true },
+        { "data": "Afperro", "title": "Error", "name": "Afperro", "autoWidth": true },
         //{ "data": "TextMessage1", "title": "TextMessage", "name": "TextMessage", "autoWidth": true },
         //{ "data": "Message1", "title": "Message", "name": "Message1", "autoWidth": true },
         { "data": "Alopen", "title": "Open", "name": "Alopen", "autoWidth": true },
@@ -83,6 +83,7 @@ var meterReportTable = $("#meterReportGrid").DataTable({
     buttons: [
         {
             extend: 'pdf',
+            //header: true,
             orientation: 'landscape',
             pageSize: 'LEGAL',
             filename: function () {
@@ -96,6 +97,7 @@ var meterReportTable = $("#meterReportGrid").DataTable({
         },
         {
             extend: 'excel',
+            //header: true,
             orientation: 'landscape',
             pageSize: 'LEGAL',
             filename: function () {
@@ -108,9 +110,9 @@ var meterReportTable = $("#meterReportGrid").DataTable({
             }
         },
         {
-            extend: 'print',
-            orientation: 'landscape',
-            pageSize:'LEGAL'
+            extend: 'print'
+            //orientation: 'landscape',
+            //pageSize:'LEGAL'
         }
     ],
     'rowCallback': function (row, data, index) {
@@ -122,7 +124,8 @@ var meterReportTable = $("#meterReportGrid").DataTable({
         //if (data[2].toUpperCase() == 'EE') {
         //    $(row).find('td:eq(2)').css('color', 'blue');
         //}
-    }
+    },
+    
 });
 
 $('#meterReportGrid tbody').on('click', 'tr', function () {
@@ -219,6 +222,18 @@ $(document).on('click', '#selectedFile', function () {
     });
 });
 
+$(document).on('click', '#showFiles', function () {
+    //$("#meterGrid").tableExport({ type: 'pdf', escape: 'false', tableName: 'meterGrid' });
+    //$('#meterGrid').tableExport({
+    //    type: 'pdf',
+    //    jspdf: {
+    //        orientation: 'l',
+    //        margins: { left: 20, top: 10 },
+    //        autotable: false
+    //    }
+    //});
+});
+
 function myFunction(date) {
     var today = date;
     var dd = today.getDate();
@@ -237,45 +252,6 @@ function myFunction(date) {
     return today;
    
 }
-
-
-//$("#createmeter").on('click', function () {
-//    $.ajax({
-//        type: "GET",
-//        contentType: "application/json;charset=utf-8",
-//        url: "/Repairs/Create",
-//        //data: JSON.stringify(selectedBatch),
-//        data: { id: selectedMeterBatch },
-//        dataType: "json",
-//        success: function (data) {
-//            window.open("/Repairs/Create");
-//        },
-//        error: function (xhr) {
-//            alert(xhr);
-//        }
-//    });
-
-
-    //$.ajax({
-    //    url: '/RepairsController/Create',
-    //    dataType: "json",
-    //    type: "Get",
-    //    cache: false,
-    //    data: { id: selectedBatch },
-    //    success: function (data) {
-    //        if (data.success) {
-    //            alert(data.message);
-    //        }
-    //    },
-    //    error: function (xhr) {
-    //        alert(xhr.responseText);
-    //    }
-    //});
-    //alert("clicked " + selectedBatch);
-//});
-
-
-
 
 
 

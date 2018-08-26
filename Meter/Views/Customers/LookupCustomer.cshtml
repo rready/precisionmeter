@@ -1,0 +1,26 @@
+﻿@model Meter.ViewModels.CustomerSelectViewModel
+
+@{
+    ViewBag.Title = "LookupCustomer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="col-md-10">
+    <h2>Lookup Customer</h2>
+    <div class="col-md-4">
+        @Html.DropDownListFor(x => x.SelectedCustId, Model.CustomerName, "Select Customer", new { @class = "form-control" })
+    </div>
+    <div class="col-md-3">
+        @*<button id="createBatch" class="btn btn-default">Create New Batch</button>*@
+        @Html.ActionLink("New Batch","Create","Batches",htmlAttributes: new { @class = "btn btn-default", custid=146 })
+    </div>
+    <div class="col-md-3">
+        @Html.ActionLink("Create Meters", "Create", null, htmlAttributes: new { @class = "btn btn-default" })
+
+    </div>
+</div>
+
+<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+

@@ -6,8 +6,8 @@ $('#batchGrid').dataTable({
         url: "/Batches/GetBatchList",
         datatype: "json",
         type: "GET",
-        dataSrc: '',
-        order: [[0, "desc"]],
+        dataSrc: ''
+        //order: [[0, "desc"]]
     },
     "columnDefs":
         [{
@@ -30,10 +30,8 @@ $('#batchGrid').dataTable({
             "render": function (data, type, full, meta) {
                 return '<a class="btn btn-info" href="/Batches/edit/' + full.BatchNo + '">Edit</a>';
             }
-        },
+        }
 
-    ],
+    ]
    
-
-    
 });

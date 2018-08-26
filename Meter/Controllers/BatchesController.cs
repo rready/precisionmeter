@@ -16,9 +16,9 @@ namespace Meter.Controllers
         
         //[Authorize]
         // GET: Batches
-        public ActionResult Index()
+        public ActionResult Index() 
         {
-            return View(db.Batches.ToList());
+            return View(db.Batches.ToList());//.OrderByDescending(x => x.BatchNo));
         }
 
         public ActionResult GetBatchMeters(int batchno)
@@ -62,11 +62,10 @@ namespace Meter.Controllers
         }
 
 
-
         public ActionResult GetBatchList()
         {
-            var x = (from obj in db.Batches select new { BatchNo = obj.BatchNo, Custid = obj.Custid, BatchDate = obj.BatchDate, Totaldone = obj.Totaldone, Printed = obj.printed }).ToList();
-            return Json(x.ToList(), JsonRequestBehavior.AllowGet);
+            var x = (from obj in db.Batches select new { BatchNo = obj.BatchNo, Custid = obj.Custid, BatchDate = obj.BatchDate, Totaldone = obj.Totaldone, Printed = obj.printed }).ToList().OrderByDescending(b => b.BatchNo);
+            return Json(x.ToList().OrderByDescending(b => b.BatchNo), JsonRequestBehavior.AllowGet);
         }
         // GET: Batches/Details/5
         public ActionResult Details(int? id)
@@ -86,6 +85,9 @@ namespace Meter.Controllers
         // GET: Batches/Create
         public ActionResult Create()
         {
+            var customers = db.Customers.ToList().OrderBy(x => x.Company);
+
+            ViewData["Cust"] = customers;
             return View();
         }
 
@@ -104,6 +106,12 @@ namespace Meter.Controllers
             }
 
             return View(batch);
+        }
+
+        [HttpPost]
+        public void InsertBatch(string custId)
+        {
+
         }
 
         // GET: Batches/Edit/5

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Meter.Models;
+using Meter.ViewModels;
 
 namespace Meter.Controllers
 {
@@ -135,6 +136,67 @@ namespace Meter.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult LookupCustomer()
+        {
+            //List<SelectListItem> items = new List<SelectListItem>();
+            //items.Add(new SelectListItem { Text = "MyId1", Value = "MyId1", Selected = true });
+            //items.Add(new SelectListItem { Text = "MyId2", Value = "MyId2" });
+            //items.Add(new SelectListItem { Text = "MyId3", Value = "MyId3" });
+
+            var customers = db.Customers
+             .Select(x =>
+                     new SelectListItem
+                     {
+                         Value = x.Custid.ToString(),
+                         Text = x.Company
+                     });
+
+
+
+            var model = new CustomerSelectViewModel
+            {
+                CustomerName = customers.OrderBy(a => a.Text)
+            };
+            return View(model);
+
+        }
+
+        private IEnumerable<SelectListItem> GetCustomers()
+        {
+            var customers = db.Customers
+                        .Select(x =>
+                                new SelectListItem
+                                {
+                                    Value = x.Custid.ToString(),
+                                    Text = x.Company
+                                });
+            ViewBag.Customers = customers;
+
+            return new SelectList(customers, "Value", "Text");
+        }
+
+
+        private IEnumerable<SelectListItem> GetSelectListItems(IEnumerable<string> elements)
+        {
+            // Create an empty list to hold result of the operation
+            var selectList = new List<SelectListItem>();
+
+            // For each string in the 'elements' variable, create a new SelectListItem object
+            // that has both its Value and Text properties set to a particular value.
+            // This will result in MVC rendering each item as:
+            //     <option value="State Name">State Name</option>
+            foreach (var element in elements)
+            {
+                selectList.Add(new SelectListItem
+                {
+                    Value = element,
+                    Text = element
+                });
+            }
+
+            return selectList;
         }
     }
 }

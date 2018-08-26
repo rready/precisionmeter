@@ -28,20 +28,22 @@ $('#customerGrid').dataTable({
 });
 
 
-//$('#customerGrid tbody').on('click', 'td.details-control', function () {
-//    var tr = $(this).closest('tr');
-//    var row = table.row(tr);
+$("#createBatch").on('click', function () {
+    var selectedCustomer = $("#SelectedCustId").val();
+    //alert('you selected' + $("#SelectedCustId").val());
+    $.ajax({
+        url: "/Batches/Create",
+        type: 'GET',
+        async: false,
+        dataType: 'json',
+        contentType: 'application/json',
+        data: {custid: selectedCustomer},
+        success: function (data) { },
+        error: function (xhr) { }
+    });
 
-//    if (row.child.isShown()) {
-//        // This row is already open - close it
-//        row.child.hide();
-//        tr.removeClass('shown');
-//    }
-//    else {
-//        // Open this row
-//        row.child(format(row.data())).show();
-//        tr.addClass('shown');
-//    }
-//});
+});
+
+
 
  
