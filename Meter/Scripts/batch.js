@@ -2,12 +2,13 @@
 $('#batchGrid').dataTable({
     Select: true,
     Processing: true,
+    "order": [[0, "desc"]],
     "ajax": {
         url: "/Batches/GetBatchList",
         datatype: "json",
         type: "GET",
         dataSrc: ''
-        //order: [[0, "desc"]]
+       
     },
     "columnDefs":
         [{
@@ -35,3 +36,4 @@ $('#batchGrid').dataTable({
     ]
    
 });
+
