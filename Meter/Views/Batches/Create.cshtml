@@ -6,7 +6,10 @@
 }
 
 <h2>Create</h2>
-
+@{ 
+    var notedate = DateTime.Now;
+    var notes = $"Batch Inserted by {User.Identity.Name} on {notedate}";
+}
 
 @using (Html.BeginForm())
 {
@@ -35,31 +38,35 @@
             @Html.Label("Total Meters", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Totaldone, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Totaldone, "", new { @class = "text-danger" })
+                @*@Html.ValidationMessageFor(model => model.Totaldone, "", new { @class = "text-danger" }*@
+                @*@Html.TextBoxFor(model => model.Totaldone, new { @Value = 0, @class = "form-control" })*@
             </div>
         </div>
 
         <div class="form-group">
             @Html.Label("Printed", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.printed, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.printed, "", new { @class = "text-danger" })
+                @*@Html.EditorFor(model => model.printed, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.printed, "", new { @class = "text-danger" })*@
+                @Html.TextBoxFor(model => model.printed, new { @Value = "", @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.Label("Status", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.BatchStatus, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BatchStatus, "", new { @class = "text-danger" })
+                @*@Html.EditorFor(model => model.BatchStatus, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BatchStatus, "", new { @class = "text-danger" })*@
+                @Html.TextBoxFor(model => model.BatchStatus, new { @Value="Active", @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Notes, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
+                @*@Html.TextAreaFor(model => model.Notes, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })*@
+                @Html.TextBoxFor(model => model.Notes, new { @Value = notes, @class = "form-control" })
             </div>
         </div>
 

@@ -64,6 +64,7 @@ namespace Meter.Controllers
 
         public ActionResult GetBatchList()
         {
+         
             var x = (from obj in db.Batches select new { BatchNo = obj.BatchNo, Custid = obj.Custid, BatchDate = obj.BatchDate, Totaldone = obj.Totaldone, Printed = obj.printed }).ToList().OrderByDescending(b => b.BatchNo);
             return Json(x.ToList().OrderByDescending(b => b.BatchNo), JsonRequestBehavior.AllowGet);
         }
@@ -85,8 +86,8 @@ namespace Meter.Controllers
         // GET: Batches/Create
         public ActionResult Create()
         {
+           
             var customers = db.Customers.ToList().OrderBy(x => x.Company);
-
             ViewData["Cust"] = customers;
             return View();
         }
