@@ -2,12 +2,12 @@
 //var name;
 var meterReportTable = $("#meterReportGrid").DataTable({
     "processing": true, // for show progress bar  
-    "serverSide": true, // for process server side  
+    //"serverSide": true, // for process server side  
     "filter": true, // this is for disable filter (search box)  
     "orderMulti": false, // for disable multiple column at once  
     "responsive": true,
     "deferRender": true,
-    "order": [[1, "desc"]],
+    "order": [[1, "asc"]],
     "ajax": {
         "url": "/vw_batchMeterReport/GetMeterList",
         "type": "POST",
@@ -46,38 +46,24 @@ var meterReportTable = $("#meterReportGrid").DataTable({
         }],
     "columns": [
         //{ "data": "sysid", "title": "Sysid","name": "sysid", "autoWidth": true },
-        { "data": "Batchno", "title":"Batch No", "name": "Batchno", "autoWidth": true },
+        { "data": "Batchno", "title":"Batch #", "name": "Batchno", "autoWidth": true },
         { "data": "Company", "title": "CO#", "name": "Company", "autoWidth": true },
         { "data": "mfgnum", "title": "MFG", "name": "mfgnum", "autoWidth": true },
-        //{ "data": "conum", "title": "conum", "name": "conum", "autoWidth": true },
         //{ "data": "conumandmfgnum", "title": "conumandmfgnum", "name": "conumandmfgnum", "autoWidth": true },
         { "data": "Mfgsize", "title": "Size", "name": "Mfgsize", "autoWidth": true },
-        { "data": "Afpopen", "title": "Open", "name": "Afpopen", "autoWidth": true },
-        { "data": "Afpcheck", "title": "Check", "name": "Afpcheck", "autoWidth": true },
-        { "data": "Afperro", "title": "Error", "name": "Afperro", "autoWidth": true },
-        //{ "data": "TextMessage1", "title": "TextMessage", "name": "TextMessage", "autoWidth": true },
-        //{ "data": "Message1", "title": "Message", "name": "Message1", "autoWidth": true },
-        { "data": "Alopen", "title": "Open", "name": "Alopen", "autoWidth": true },
-        { "data": "Alcheck", "title": "Check", "name": "Alcheck", "autoWidth": true },
-        { "data": "Alerror", "title": "Error", "name": "Alerror", "autoWidth": true },
+        { "data": "Afpopen", "title": "AFP Open", "name": "Afpopen", "autoWidth": true },
+        { "data": "Afpcheck", "title": "AFP Check", "name": "Afpcheck", "autoWidth": true },
+        { "data": "Afperro", "title": "AFP Error", "name": "Afperro", "autoWidth": true },
+        { "data": "Alopen", "title": "ALP Open", "name": "Alopen", "autoWidth": true },
+        { "data": "Alcheck", "title": "ALP Check", "name": "Alcheck", "autoWidth": true },
+        { "data": "Alerror", "title": "ALP Error", "name": "Alerror", "autoWidth": true },
         { "data": "Pdate", "title": "By Date", "name": "Pdate", "autoWidth": true },
-        //{ "data": "Textmessage2", "title": "TextMessage2", "name": "Textmessage2", "autoWidth": true },
-        //{ "data": "Message2", "title": "Message2", "name": "Message2", "autoWidth": true },
         //{ "data": "Pby", "title": "Pby", "name": "Pby", "autoWidth": true },
         { "data": "Rft", "title": "For Test", "name": "Rft", "autoWidth": true },
         { "data": "Irbt", "title": "Before", "name": "Irbt", "autoWidth": true },
         { "data": "Irat", "title": "After", "name": "Irat", "autoWidth": true },
         
-        { "data": "Remarks", "title": "", "name": "Remarks", "autoWidth": true },
-        //{ "data": "Statue", "title": "Status", "name": "Statue", "autoWidth": true },
-
-        //{
-        //    "render": function (data, type, full, meta) { return '<a class="btn btn-info" href="/Repairs/Edit/' + full.sysid + '">Edit</a>'; }
-        //},
-        //{
-        //    "render": function (data, type, full, meta) { return '<a class="btn btn-info" href="/Repairs/Delete/' + full.sysid + '">Delete</a>'; }
-        //}
-
+        { "data": "Remarks", "title": "", "name": "Remarks", "autoWidth": true }
     ],
     dom: 'Bfrtip',
     buttons: [
@@ -117,9 +103,13 @@ var meterReportTable = $("#meterReportGrid").DataTable({
     ],
     'rowCallback': function (row, data, index) {
         if (data.Afperro < 0) {
-            $(row).find('td:eq(5)').css('color', 'red');
+            $(row).find('td:eq(5)').css('color', 'white');
+            $(row).find('td:eq(5)').css('background-color', '#ce0815');
+         
         } else {
-            $(row).find('td:eq(5)').css('color', '#179b06');
+            $(row).find('td:eq(5)').css('color', 'black');
+            $(row).find('td:eq(5)').css('background-color', '#0aa504');
+      
         }
         //if (data[2].toUpperCase() == 'EE') {
         //    $(row).find('td:eq(2)').css('color', 'blue');
@@ -151,7 +141,7 @@ var checkCal = $("#Afpcheck").val();
 var Cal2 = openCal * .25;
 var Cal3 = checkCal * .75;
 var Cal4 = Cal2 + Cal3;
-var Cal5 = Cal4 - 100
+var Cal5 = Cal4 - 100;
 
 $("#Afperro").val(Cal5);
 
@@ -161,7 +151,7 @@ $("#Afpopen").blur(function () {
     var Cal2 = openCal * .25;
     var Cal3 = checkCal * .75;
     var Cal4 = Cal2 + Cal3;
-    var Cal5 = Cal4 - 100
+    var Cal5 = Cal4 - 100;
     var FinalNumber = Math.round(Cal5 * 100) / 100;
     if (FinalNumber < 0) {
         $("#Afperro").css({ 'background-color': '#ce0815' });
@@ -254,7 +244,5 @@ function myFunction(date) {
 }
 
 
-
-
-
+//========================================================================================
 

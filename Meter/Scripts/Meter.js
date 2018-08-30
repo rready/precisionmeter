@@ -65,9 +65,14 @@ var meterTable = $("#meterGrid").DataTable({
     ],
     'rowCallback': function (row, data, index) {
         if (data.Afperro < 0) {
-            $(row).find('td:eq(5)').css('color', 'red');
+            $(row).find('td:eq(5)').css('color', 'white');
+            $(row).find('td:eq(5)').css('background-color', '#ce0815');
+        
         } else {
-            $(row).find('td:eq(5)').css('color', '#179b06');
+            $(row).find('td:eq(5)').css('color', 'black');
+            $(row).find('td:eq(5)').css('background-color', '#0aa504');
+        
+
         }
         //if (data[2].toUpperCase() == 'EE') {
         //    $(row).find('td:eq(2)').css('color', 'blue');
