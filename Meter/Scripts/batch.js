@@ -27,6 +27,7 @@ $('#batchGrid').dataTable({
         { "data": "BatchDate", "name": "BatchDate", "autoWidth": true },
         { "data": "Totaldone", "title": "Totaldone", "name": "Contact", "autoWidth": true },
         { "data": "Printed", "title": "Printed", "name": "Printed" },
+        //{ "data": "Active" , "title": "Active", "name": "Active"},
         {
             "render": function (data, type, full, meta) {
                 return '<a class="btn btn-info" href="/Batches/edit/' + full.BatchNo + '">Edit</a>';

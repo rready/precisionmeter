@@ -1,0 +1,133 @@
+﻿@model IEnumerable<Meter.Models.vw_batchMeterReport>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PRECISION METER INC</title>
+    <title>4410 Airport Road</title>
+</head>
+<div>
+    <div id="pdfExport" class="btn btn-default">Export To PDF</div>
+</div>
+<body>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Batchno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.mfgnum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.conum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mfgsize)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Afpopen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Afpcheck)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Afperro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Alopen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Alcheck)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Alerror)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pdate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pby)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rft)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Irat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Irbt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Remarks)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Customer.Company)
+            </th>*@
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Batchno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mfgnum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.conum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mfgsize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Afpopen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Afpcheck)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Afperro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Alopen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Alcheck)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Alerror)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pby)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rft)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Irat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Irbt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Remarks)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Customer.Company)
+            </td>*@
+         </tr>
+    }
+    
+    </table>
+</body>
+</html>

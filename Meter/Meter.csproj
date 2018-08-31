@@ -50,6 +50,9 @@
       <HintPath>..\packages\Salaros.ConfigParser.0.3.0\lib\net45\ConfigParser.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rotativa.1.7.3\lib\net461\Rotativa.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -391,6 +394,10 @@
       <DependentUpon>Precision.edmx</DependentUpon>
       <LastGenOutput>Precision.cs</LastGenOutput>
     </Content>
+    <Content Include="Rotativa\help-wkhtmltoimage.txt" />
+    <Content Include="Rotativa\help-wkhtmltopdf.txt" />
+    <Content Include="Rotativa\wkhtmltoimage.exe" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\BatchEditMeters.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -406,6 +413,7 @@
     </Content>
     <Content Include="Scripts\DataTables\Buttons-1.5.2\css\common.scss" />
     <Content Include="Scripts\DataTables\Buttons-1.5.2\css\mixins.scss" />
+    <Content Include="App_Browsers\qt.browser" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Calculate.js" />
     <Content Include="Scripts\Customer.js" />
@@ -805,6 +813,7 @@
     <Content Include="Views\vw_batchMeterReport\Details.cshtml" />
     <Content Include="Views\vw_batchMeterReport\Edit.cshtml" />
     <Content Include="Views\vw_batchMeterReport\Index.cshtml" />
+    <Content Include="Views\vw_batchMeterReport\ExportToPDF.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Start\App_Data\" />

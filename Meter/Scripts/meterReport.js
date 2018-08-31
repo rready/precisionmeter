@@ -1,8 +1,8 @@
 ﻿var selectedMeterBatch;
 //var name;
+//$('#meterReportGrid').append('<caption style="caption-side: bottom">PRECISION METER</caption>');
 var meterReportTable = $("#meterReportGrid").DataTable({
     "processing": true, // for show progress bar  
-    //"serverSide": true, // for process server side  
     "filter": true, // this is for disable filter (search box)  
     "orderMulti": false, // for disable multiple column at once  
     "responsive": true,
@@ -15,7 +15,14 @@ var meterReportTable = $("#meterReportGrid").DataTable({
         "dataSrc": ''
     },
     "columnDefs":
-        [{
+        [
+        {
+            "targets": [],
+            "visible": true,
+            "searchable": false,
+            "select":false
+        },
+        {
             "targets": [0],
             "visible": true,
             "searchable": true,
@@ -45,7 +52,7 @@ var meterReportTable = $("#meterReportGrid").DataTable({
 
         }],
     "columns": [
-        //{ "data": "sysid", "title": "Sysid","name": "sysid", "autoWidth": true },
+        //{ "data": "", "title": "","name": "", "autoWidth": true },
         { "data": "Batchno", "title":"Batch #", "name": "Batchno", "autoWidth": true },
         { "data": "Company", "title": "CO#", "name": "Company", "autoWidth": true },
         { "data": "mfgnum", "title": "MFG", "name": "mfgnum", "autoWidth": true },
@@ -69,10 +76,12 @@ var meterReportTable = $("#meterReportGrid").DataTable({
     buttons: [
         {
             extend: 'pdf',
-            //header: true,
+            header: true,
             orientation: 'landscape',
             pageSize: 'LEGAL',
-            filename: function () {
+            title: 'PRECISION METER REPAIR, INC.' + '\n' + '4410 Airport Road' + '\n' + 'Plant City, Fl',
+            //messageTop: 'Plant City, Fl',
+            filename: function () { 
                 var date = new Date();
                 var d = myFunction(date);
                 var name = meterReportTable.buttons.exportData();
@@ -84,6 +93,8 @@ var meterReportTable = $("#meterReportGrid").DataTable({
         {
             extend: 'excel',
             //header: true,
+            title: 'PRECISION METER REPAIR, INC.' + '\n' + '4410 Airport Road' + '\n' + 'Plant City, Fl',
+            //messageTop:'Plant City, Fl',
             orientation: 'landscape',
             pageSize: 'LEGAL',
             filename: function () {
@@ -103,14 +114,21 @@ var meterReportTable = $("#meterReportGrid").DataTable({
     ],
     'rowCallback': function (row, data, index) {
         if (data.Afperro < 0) {
-            $(row).find('td:eq(5)').css('color', 'white');
-            $(row).find('td:eq(5)').css('background-color', '#ce0815');
+            $(row).find('td:eq(6)').css('color', 'white');
+            $(row).find('td:eq(6)').css('background-color', '#ce0815');
          
         } else {
-            $(row).find('td:eq(5)').css('color', 'black');
-            $(row).find('td:eq(5)').css('background-color', '#0aa504');
+            $(row).find('td:eq(6)').css('color', 'black');
+            $(row).find('td:eq(6)').css('background-color', '#0aa504');
       
         }
+
+        //var info = this.api.page.info();
+        var info = meterReportTable.page.info();
+        var page = info.page;
+        var length = info.length;
+         index = (page * length + (index + 1));
+        $('td:eq(0)', row).html(index);
         //if (data[2].toUpperCase() == 'EE') {
         //    $(row).find('td:eq(2)').css('color', 'blue');
         //}
@@ -156,7 +174,7 @@ $("#Afpopen").blur(function () {
     if (FinalNumber < 0) {
         $("#Afperro").css({ 'background-color': '#ce0815' });
         $("#Afperro").css('color', 'white');
-    } else {
+    } else 
         $("#Afperro").css({ 'background-color': '#0aa504' });
         $("#Afperro").css('color', 'black');
     }
@@ -212,6 +230,24 @@ $(document).on('click', '#selectedFile', function () {
     });
 });
 
+$("#meterReportGrid").on("click", "tr", function () {
+    var $name = $(this).children(":first").text();
+});
+
+$(document).on('click', '#ShowReport', function () {
+
+    $.ajax({
+        "url": "/vw_batchMeterReport/ExportToPDF",
+        "type": "POST",
+        //"data": {custid: }
+        "success": function (data) {
+
+        }
+    });
+});
+
+
+
 $(document).on('click', '#showFiles', function () {
     //$("#meterGrid").tableExport({ type: 'pdf', escape: 'false', tableName: 'meterGrid' });
     //$('#meterGrid').tableExport({
@@ -242,6 +278,12 @@ function myFunction(date) {
     return today;
    
 }
+
+//meterReportGrid.on('order.dt search.dt', function () {
+//    meterReportGrid.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+//        cell.innerHTML = i + 1;
+//    });
+//}).draw();
 
 
 //========================================================================================

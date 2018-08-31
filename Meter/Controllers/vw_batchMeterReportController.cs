@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Meter.Models;
+using Rotativa;
 
 namespace Meter.Controllers
 {
@@ -15,12 +16,15 @@ namespace Meter.Controllers
     {
         private PrecisionMeterEntities db = new PrecisionMeterEntities();
 
-        // GET: vw_batchMeterReport
+        // GET: vw_batchMeterReport.
         public ActionResult Index()
         {
             SelectList sl = GetExportedFiles();
             ViewBag.Files = sl;
-            return View(db.vw_batchMeterReport.ToList());
+            // var data = db.vw_batchMeterReport.ToList().Where(x => Convert.ToInt32(x.Custid) == 146);
+            // return View(data);
+            //return View(db.vw_batchMeterReport.ToList().Where(x => Convert.ToInt32(x.conum) == 146));
+            return View();
         }
 
         public SelectList GetExportedFiles()
@@ -95,6 +99,27 @@ namespace Meter.Controllers
 
             return Json(x.ToList(), JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult GeneratePDF()
+        {
+            return new Rotativa.ActionAsPdf("ExportToPDF");
+        }
+
+        public ActionResult ExportToPDF()
+        {
+          
+            
+            //return new ActionAsPdf(
+            //             "ExportToPDF",
+            //               new { Custid = 149 })
+            //{ FileName = "Report.pdf" };
+            
+            return View("ExportToPDF", db.vw_batchMeterReport.ToList().Where(x => x.Custid == 149));
+          
+            //return new Rotativa.ActionAsPdf("ExportToPDF");
+            // return pp;
+        }
+
 
         // GET: vw_batchMeterReport/Details/5
         public ActionResult Details(int? id)

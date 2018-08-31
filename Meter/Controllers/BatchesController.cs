@@ -18,7 +18,8 @@ namespace Meter.Controllers
         // GET: Batches
         public ActionResult Index() 
         {
-            return View(db.Batches.ToList());//.OrderByDescending(x => x.BatchNo));
+
+            return View(db.Batches.ToList()); //.OrderByDescending(x => x.BatchNo));
         }
 
         public ActionResult GetBatchMeters(int batchno)
@@ -64,7 +65,8 @@ namespace Meter.Controllers
 
         public ActionResult GetBatchList()
         {
-         
+            //return View(db.Customers.Include(d => d.Repairs).ToList());
+            
             var x = (from obj in db.Batches select new { BatchNo = obj.BatchNo, Custid = obj.Custid, BatchDate = obj.BatchDate, Totaldone = obj.Totaldone, Printed = obj.printed }).ToList().OrderByDescending(b => b.BatchNo);
             return Json(x.ToList().OrderByDescending(b => b.BatchNo), JsonRequestBehavior.AllowGet);
         }

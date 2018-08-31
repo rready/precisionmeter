@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Batch Records</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -22,6 +22,7 @@
                     <th>Batch Date</th>
                     <th>Total Done</th>
                     <th>Printed</th>
+                    @*<th>Active</th>*@
                     <th>Edit</th>
                 </tr>
             </thead>
@@ -30,13 +31,12 @@
     </div>
 </div>
 
+@Scripts.Render("~/bundles/jquery")
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
 <link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
 <script src="~/Scripts/DataTables/datatables.js"></script>
 <script src="~/Scripts/moment.js"></script>
-@*<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>*@
 <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
-<script src="~/Scripts/batch.js"></script>
+@*<script src="~/Scripts/batch.js"></script>*@
 
