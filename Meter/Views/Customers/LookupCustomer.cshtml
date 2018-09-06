@@ -1,5 +1,5 @@
 ﻿@model Meter.ViewModels.CustomerSelectViewModel
-
+@using Mvc.CascadeDropDown
 @{
     ViewBag.Title = "LookupCustomer";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,16 +9,29 @@
 <div class="col-md-10">
     <h2>Lookup Customer</h2>
     <div class="col-md-4">
-        @Html.DropDownListFor(x => x.SelectedCustId, Model.CustomerName, "Select Customer", new { @class = "form-control" })
+        @Html.DropDownListFor(x => x.SelectedCustId, Model.CustomerName, "Select Customer", new { @class = "form-control", id = Model.SelectedCustId })
+
     </div>
     <div class="col-md-3">
         @*<button id="createBatch" class="btn btn-default">Create New Batch</button>*@
-        @Html.ActionLink("New Batch","Create","Batches",htmlAttributes: new { @class = "btn btn-default", custid=146 })
+        @*@Html.ActionLink("Select Batch", "SelectBatch", "Customers", htmlAttributes: new { @class = "btn btn-default", id = Model.SelectedCustId })*@
+        @Html.CascadingDropDownListFor(
+          expression: m => m.SelectedCity,
+          triggeredByProperty: m => m.SelectedCountry,  //Parent property that trigers dropdown data loading
+          url: Url.Action("GetCities", "Home"),  //Url of action that returns dropdown data
+          actionParam: "country",   //Parameter name for the selected parent value that url action receives
+          optionLabel: "Please select a City", // Option label
+          disabledWhenParrentNotSelected: true, //If true, disables dropdown until parrent dropdown selected
+          htmlAttributes: new { @class = "form-control" }) //Html attributes
     </div>
-    <div class="col-md-3">
-        @Html.ActionLink("Create Meters", "Create", null, htmlAttributes: new { @class = "btn btn-default" })
+    @*<div>
+            @Html.Partial("SelectedBatch");
+        </div>*@
 
-    </div>
+    @*<div class="col-md-3">
+            @Html.ActionLink("Create Meters", "Create", null, htmlAttributes: new { @class = "btn btn-default" })
+
+        </div>*@
 </div>
 
 <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />

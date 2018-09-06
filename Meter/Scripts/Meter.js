@@ -19,7 +19,7 @@ var meterTable = $("#meterGrid").DataTable({
             "targets": [0],
             "visible": false,
             "searchable": false,
-            "select": true,
+            "select": true
         },
         {
             "render": function (data, type, row) {
@@ -31,7 +31,7 @@ var meterTable = $("#meterGrid").DataTable({
         }],
     "columns": [
         { "data": "sysid", "name": "sysid", "autoWidth": true },
-        { "data": "Batchno", "name": "Batchno", "autoWidth": true },
+        { "data": "Batchno", "name": "Batchno", "autoWidth": false },
         { "data": "Company", "title":"Company","name": "Company", "autoWidth": true },
         //{ "data": "mfgnum", "title": "mfgnum", "name": "mfgnum", "autoWidth": true },
         //{ "data": "conum", "title": "conum", "name": "conum", "autoWidth": true },
@@ -69,7 +69,7 @@ var meterTable = $("#meterGrid").DataTable({
             $(row).find('td:eq(5)').css('background-color', '#ce0815');
         
         } else {
-            $(row).find('td:eq(5)').css('color', 'black');
+            $(row).find('td:eq(5)').css('color', 'white');
             $(row).find('td:eq(5)').css('background-color', '#0aa504');
         
 
@@ -95,6 +95,7 @@ $('#meterGrid tbody').on('click', 'tr', function () {
     }
 });
 
+var prepender = "";
 
 //100.4 on open  99.4 on check   Take 100.4 x .25 = 25.1   99.4 x .75 = 74.55  
 //Take 25.1 + 74.55 =  99.65 - 100 = +.35 is to be shown in 
@@ -103,7 +104,7 @@ var checkCal = $("#Afpcheck").val();
 var Cal2 = openCal * .25;
 var Cal3 = checkCal * .75;
 var Cal4 = Cal2 + Cal3;
-var Cal5 = Cal4 - 100
+var Cal5 = Cal4 - 100;
 
 $("#Afperro").val(Cal5);
 
@@ -113,16 +114,18 @@ $("#Afpopen").blur(function () {
     var Cal2 = openCal * .25;
     var Cal3 = checkCal * .75;
     var Cal4 = Cal2 + Cal3;
-    var Cal5 = Cal4 - 100
+    var Cal5 = Cal4 - 100;
     var FinalNumber = Math.round(Cal5 * 100) / 100;
     if (FinalNumber < 0) {
         $("#Afperro").css({ 'background-color': '#ce0815' });
         $("#Afperro").css('color', 'white');
+        prepender = "-";
     } else {
         $("#Afperro").css({ 'background-color': '#0aa504' });
-        $("#Afperro").css('color', 'black');
+        $("#Afperro").css('color', 'white');
+        prepender = '+';
     }
-    $("#Afperro").val(FinalNumber);
+    $("#Afperro").val(prepender + FinalNumber);
 });
 
 $("#Afpcheck").blur(function () {
@@ -136,9 +139,11 @@ $("#Afpcheck").blur(function () {
     if (FinalNumber < 0) {
         $("#Afperro").css({ 'background-color': '#ce0815' });
         $("#Afperro").css('color', 'white');
+        prepender = "-";
     } else {
         $("#Afperro").css({ 'background-color': '#0aa504' });
-        $("#Afperro").css('color', 'black');
+        $("#Afperro").css('color', 'white');
+        prepender = "+";
     }
     $("#Afperro").val(FinalNumber);
 });

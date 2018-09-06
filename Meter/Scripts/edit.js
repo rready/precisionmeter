@@ -24,7 +24,7 @@
             $("#Afperro").css('color', 'white');
         } else {
             $("#Afperro").css({ 'background-color': '#0aa504' });
-            $("#Afperro").css('color', 'black');
+            $("#Afperro").css('color', 'white');
         }
         $("#Afperro").val(FinalNumber);
     }

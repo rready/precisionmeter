@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Meter.Models;
 using Meter.ViewModels;
 
+
 namespace Meter.Controllers
 {
     public class CustomersController : Controller
@@ -140,10 +141,7 @@ namespace Meter.Controllers
 
         public ActionResult LookupCustomer()
         {
-            //List<SelectListItem> items = new List<SelectListItem>();
-            //items.Add(new SelectListItem { Text = "MyId1", Value = "MyId1", Selected = true });
-            //items.Add(new SelectListItem { Text = "MyId2", Value = "MyId2" });
-            //items.Add(new SelectListItem { Text = "MyId3", Value = "MyId3" });
+       
 
             var customers = db.Customers
              .Select(x =>
@@ -153,7 +151,14 @@ namespace Meter.Controllers
                          Text = x.Company
                      });
 
-
+            ViewBag.Batch = db.Batches
+                .Select(b =>
+                new SelectListItem
+                {
+                    Value = b.BatchNo.ToString(),
+                    Text = b.BatchNo.ToString()
+                });
+            return View();
 
             var model = new CustomerSelectViewModel
             {
@@ -162,6 +167,26 @@ namespace Meter.Controllers
             return View(model);
 
         }
+        
+        public ActionResult SelectBatch(string id)
+        {
+            var newid = Convert.ToInt32(id);
+            var batches = db.Batches.Where(b => b.Custid == newid)
+              .Select(x =>
+                 new SelectListItem
+                 {
+                     Value = x.BatchNo.ToString(),
+                     Text = x.BatchNo.ToString()
+                 });
+
+
+            var model = new BatchSelectViewModel
+            {
+                Batchno = batches.OrderBy(a => a.Text)
+            };
+            return PartialView("SelectedBatch", model);
+        }
+
 
         private IEnumerable<SelectListItem> GetCustomers()
         {

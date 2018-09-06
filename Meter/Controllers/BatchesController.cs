@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Meter.Models;
+using Meter.ViewModels;
 
 namespace Meter.Controllers
 {
@@ -71,6 +72,7 @@ namespace Meter.Controllers
             return Json(x.ToList().OrderByDescending(b => b.BatchNo), JsonRequestBehavior.AllowGet);
         }
         // GET: Batches/Details/5
+
         public ActionResult Details(int? id)
         {
             if (id == null)
