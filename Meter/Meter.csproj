@@ -775,6 +775,7 @@
     <Content Include="Views\Repairs\_CreateRepair.cshtml" />
     <Content Include="Views\Customers\LookupCustomer.cshtml" />
     <Content Include="Views\Shared\SelectedBatch.cshtml" />
+    <Content Include="Views\Batches\AddMeter.cshtml" />
     <None Include="Views\Shared\_Layout11.cshtml" />
     <Content Include="Views\Shared\style.css" />
     <Content Include="Web.config">

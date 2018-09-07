@@ -96,6 +96,15 @@ namespace Meter.Controllers
             return View();
         }
 
+        public ActionResult AddMeter(string id)
+        {
+            ViewBag.Custid = new SelectList(db.Customers, "Custid", "Company");
+            ViewBag.BatchNo = id;
+            ViewBag.AFM = db.MeterOptions.ToList().Where(x => x.Type == "AFM");
+            return View();
+        }
+
+
         // POST: Batches/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.

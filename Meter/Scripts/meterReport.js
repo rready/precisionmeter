@@ -1,4 +1,8 @@
-﻿//$(document).ready(function () {
+﻿$(document).ready(function () {
+    $('#meterReportGrid tfoot th').each(function () {
+        var title = $(this).text();
+        $(this).html('<input type="text" style="width:45px" placeholder="Search ' + title + '" />');
+    });
     var selectedMeterBatch;
     //var name;
     //$('#meterReportGrid').append('<caption style="caption-side: bottom">PRECISION METER</caption>');
@@ -20,7 +24,8 @@
                 {
                     "targets": [0],
                     "visible": true,
-                    "searchable": false
+                    "searchable": false,
+                    "width":"10px;"
 
                 },
                 {
@@ -29,18 +34,23 @@
                     "targets": 1
                 },
                 {
+                    "width": "20px",
+                    "searchable": true,
+                    "targets":2
+                },
+                {
                     "targets": [12],
-                    "visible": false,
+                    "visible": true,
                     "searchable": false
                 },
                 {
                     "targets": [13],
-                    "visible": false,
+                    "visible": true,
                     "searchable": false
                 },
                 {
                     "targets": [14],
-                    "visible": false,
+                    "visible": true,
                     "searchable": false
                 },
                 {
@@ -52,7 +62,7 @@
 
                 }],
         "columns": [
-            { "data": null, "defaultContent": '' },
+            { "data": null, "defaultContent": '',"width":"10px" },
             { "data": "Batchno", "title": "Batch", "name": "Batchno", "width": "10px" },
             { "data": "Company", "title": "CO#", "name": "Company", "autoWidth": true },
             { "data": "mfgnum", "title": "MFG#", "name": "mfgnum", "autoWidth": true },
@@ -63,7 +73,7 @@
             { "data": "Alopen", "title": "ALP Open", "name": "Alopen", "autoWidth": true },
             { "data": "Alcheck", "title": "ALP Check", "name": "Alcheck", "autoWidth": true },
             { "data": "Alerror", "title": "ALP Error", "name": "Alerror", "autoWidth": true },
-            { "data": "Pdate", "title": "By Date", "name": "Pdate", "autoWidth": true },
+            { "data": "Pdate", "title": "By Date", "name": "Pdate", "type": "date", "autoWidth": true },
             { "data": "Rft", "title": "For Test", "name": "Rft", "autoWidth": true },
             { "data": "Irbt", "title": "Before", "name": "Irbt", "autoWidth": true },
             { "data": "Irat", "title": "After", "name": "Irat", "autoWidth": true },
@@ -85,6 +95,24 @@
                     var batch = name.body[0][0];
                     var co = name.body[0][1];
                     return batch + "_" + co + "_" + d;
+                },
+                customize: function (doc) {
+                    doc['footer'] = (function (page, pages) {
+                        return {
+                            columns: [
+                                '',
+                                {
+                                    alignment: 'right',
+                                    text: [
+                                        { text: page.toString(), italics: true },
+                                        ' of ',
+                                        { text: pages.toString(), italics: true }
+                                    ]
+                                }
+                            ],
+                            margin: [10, 0]
+                        }
+                    });
                 }
             },
             {
@@ -111,13 +139,20 @@
         ],
         'rowCallback': function (row, data, index) {
             if (data.Afperro < 0) {
-                $(row).find('td:eq(6)').css('color', 'white');
-                $(row).find('td:eq(6)').css('background-color', '#ce0815');
+                $(row).find('td:eq(7)').css('color', 'white');
+                $(row).find('td:eq(7)').css('background-color', '#ce0815');
 
             } else {
-                $(row).find('td:eq(6)').css('color', 'white');
-                $(row).find('td:eq(6)').css('background-color', '#0aa504');
+                $(row).find('td:eq(7)').css('color', 'white');
+                $(row).find('td:eq(7)').css('background-color', '#0aa504');
 
+            }
+            if (data.Alperro < 0) {
+                $(row).find('td:eq(10)').css('color', 'white');
+                $(row).find('td:eq(10)').css('background-color', '#ce0815');
+            } else {
+                $(row).find('td:eq(10)').css('color', 'white');
+                $(row).find('td:eq(10)').css('background-color', '#0aa504');
             }
 
             //var info = this.api.page.info();
@@ -332,10 +367,7 @@
     });
 
 
-    $('#meterReportGrid tfoot th').each(function () {
-        var title = $(this).text();
-        $(this).html('<input type="text" placeholder="Search ' + title + '" />');
-    });
+   
     //========================================================================================
 
-//});
+});

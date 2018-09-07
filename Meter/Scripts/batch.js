@@ -2,13 +2,13 @@
 $('#batchGrid').dataTable({
     Select: true,
     Processing: true,
-    "order": [[0, "desc"]],
+    "order": [[2, "desc"]],
     "ajax": {
         url: "/Batches/GetBatchList",
         datatype: "json",
         type: "GET",
         dataSrc: ''
-       
+
     },
     "columnDefs":
         [{
@@ -24,7 +24,7 @@ $('#batchGrid').dataTable({
     "columns": [
         { "data": "BatchNo", "name": "BatchNo", "autoWidth": true },
         { "data": "Custid", "name": "Custid", "autoWidth": true },
-        { "data": "BatchDate", "name": "BatchDate", "autoWidth": true },
+        { "data": "BatchDate", "name": "BatchDate", "type":"date", "autoWidth": true },
         { "data": "Totaldone", "title": "Totaldone", "name": "Contact", "autoWidth": true },
         { "data": "Printed", "title": "Printed", "name": "Printed" },
         //{ "data": "Active" , "title": "Active", "name": "Active"},
